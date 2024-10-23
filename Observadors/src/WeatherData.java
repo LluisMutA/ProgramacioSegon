@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 public class WeatherData{
 
     private List<WeatherObserver> observers;
@@ -50,12 +49,13 @@ public class WeatherData{
         observers.remove(observer);
     }
 
-    public void avisarObservers(){
-        for (WeatherObserver observer : observers){
-            observer.update(tempaeratura, humitat, pressio);
-        }
+    public void eliminarTotsObservers(WeatherObserver observer){
+        observers.clear();
     }
 
+    public void avisarObservers(){
+        observers.forEach(observer -> observer.update(tempaeratura, humitat, pressio));
+    }
     public void setData(float tempaeratura, float humitat, float pressio){
         this.tempaeratura =  (float) Math.random()*100;// TODO: crear numeros aleatoris
         this.humitat = (float) Math.random()*50;
