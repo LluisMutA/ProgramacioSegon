@@ -30,19 +30,21 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        String name = req.getParameter("name");
+        int id = 0;
+
         String passwordCheck = req.getParameter("passwordCheck");
 
         String message = ""; //TODO: asignar ip (.lenght+1)
-        try {
-            loginService.createUser(username, password, passwordCheck);
-        } catch () {
-
-        }
+//        try {
+        loginService.createUser(username, password, passwordCheck, name, id);
+//        } catch (Exception e) {
+//            System.out.println("algo no ha ido bien amic"); // Cambiar a message en tenir temps
+//        }
         //createUserLogic(password, passwordCheck, username);
 
         RequestDispatcher requestDispatcher =
                 req.getRequestDispatcher("/WEB-INF/jsp/Register.jsp");
         requestDispatcher.forward(req, resp);
     }
-
 }
