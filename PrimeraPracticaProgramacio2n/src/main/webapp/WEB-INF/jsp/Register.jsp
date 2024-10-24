@@ -12,10 +12,10 @@
     <input type="text" name="username">
     <br>
     Password: <br>
-    <input type="password" name="password">
+    <input type="password" name="password" default="Your Password">
     <br>
     Repeat password: <br>
-    <input type="password" name="passwordCheck">
+    <input type="password" name="passwordCheck" default="Repeat the Password">
     <br>
     <input type="submit" value="Register">
     <br>
