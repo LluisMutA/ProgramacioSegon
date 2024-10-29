@@ -27,6 +27,16 @@ public class UserDAOInMemory  implements  UserDAO{
     }
 
     @Override
+    public User chekUsernameAndPassword(String username, String password) {
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void newUser(User user) {
         for(User u: users) {
             if (u.getUsername().equals(user.getUsername())) {
@@ -37,15 +47,8 @@ public class UserDAOInMemory  implements  UserDAO{
 
         user.setId(users.size()+1);
         users.add(user);
+        for(User s: users){
+        System.out.println("Username" + s.getUsername() + "Password" + s.getPassword() + "Name" + s.getName() + "ID" + s.getId());
     }
-
-
-    public  void addNewUser(String username, String password, String name, int id) {
-        id = users.size();
-        id++;
-        users.add(new User(username, password, name, id));
-        for (User u : users){
-            System.out.println("User: " + u.getUsername() +" Pass: "+ u.getPassword()+ " ID: "+ u.getId());
-        }
-    }
+}
 }

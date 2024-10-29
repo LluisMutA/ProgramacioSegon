@@ -12,21 +12,29 @@ import java.io.IOException;
 public class PrivatServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Primer miram que dins la sessio de l'user tenim l'atribut "user" amb un valor
-//        HttpSession session = req.getSession();
-//        String user = (String) session.getAttribute("user");
-//        if(user == null){
-//            //user no autoritzat
-//            resp.sendRedirect("/login");
-//            return;
-//        }
-        if(!Utils.userOK(req)){
+        if (!Utils.userOK(req)) {
             resp.sendRedirect("/login");
             return;
         }
 
-        RequestDispatcher requestDispatcher =
-                req.getRequestDispatcher("/WEB-INF/jsp/private.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/private.jsp");
         requestDispatcher.forward(req, resp);
     }
 }
+
+
+//@WebServlet("/private")
+//public class PrivatServlet extends HttpServlet {
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//
+//        if(!Utils.userOK(req)){
+//            resp.sendRedirect("/login");
+//            return;
+//        }
+//
+//        RequestDispatcher requestDispatcher =
+//                req.getRequestDispatcher("/WEB-INF/jsp/private.jsp");
+//        requestDispatcher.forward(req, resp);
+//    }
+//}

@@ -35,12 +35,11 @@ public class RegisterServlet extends HttpServlet {
 
         try {
             loginService.createUser(username, password, passwordCheck, name);
+            resp.sendRedirect("/login");
         } catch(Exception e) {
             req.setAttribute("message", e.getMessage());
-        }
-
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/Register.jsp");
-        requestDispatcher.forward(req, resp);
+            requestDispatcher.forward(req, resp);
+        }
     }
-
 }

@@ -7,8 +7,16 @@ import com.Draw.model.User;
 public class LoginService {
     UserDAO userDAO = new UserDAOInMemory();
 
-    public User checkUser(String username, String password, int id){
+    public User checkUser(String username){
         return userDAO.findByUsername(username);
+    }
+
+    public User login(String username, String password) { // COMPROVAR
+        User user = userDAO.chekUsernameAndPassword(username, password);
+        if (user == null) {
+            throw new RuntimeException("Nombre de usuario o contraseña incorrectos");
+        }
+        return user;
     }
 
     public User createUser(String username, String password, String passwordCheck, String name) {
@@ -28,23 +36,6 @@ public class LoginService {
         System.out.println("Cuenta creada");
         System.out.println("Username: " + username + " Pass: " + password);
         return user;
+
     }
-
-        /*
-
-        for(User u : userDAO{
-            String usr = u.getUsername();
-            System.out.println("REGISTER SERVLET: " + u.getUsername() +"   " +u.getPassword());
-            if(username.equals(usr)){
-                System.out.println("User repetido");
-                break;
-            }else
-            if(password.equals(passwordCheck)){
-                UserDAOInMemory register = new UserDAOInMemory();
-                register.addNewUser(username, password);
-                System.out.println("Account created"); // TODO: Message
-                System.out.println("Username: "+ username + " Pass: " + password);
-            }else System.out.println("Paswords doesnt match!");
-        }*/
-
 }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/login2")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     LoginService loginService = new LoginService();
     @Override
@@ -26,29 +26,19 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        String id = req.getParameter("id");
-        User user = loginService.checkUser(username, password, Integer.parseInt(id));
-        if(user != null){
-            //Usuari i pass correcte
+
+        try {
+            User user = loginService.login(username, password);
+
             HttpSession session = req.getSession();
-            session.setAttribute("user", username);
-            //Crea un objecte dins del  agatzem de sessions
-            // del servidor. Aquest és el nom de l'usuari autenticat
-            // El servidor crea o empra la COOKIE i l'envia al client. Dins
-            // hi ha un identificador que identifica la sessio correcte
+            session.setAttribute("user", user);
 
-            //Redireccionar a l'usuari cap una pagina privada
             resp.sendRedirect("/private");
-            return;
-        }else{
-            //Retornar codi 401: Not Authorized
-            // Tornar un codi 200 normal amb una variable per indicar que no es correcte el login
-            // aixi l'usuari no veu la pagina 401 estandars, sino unoa 200 amb infromacio
-            req.setAttribute("message", "Usuari i/o Password incorrectes");
-        }
+        } catch (Exception e) {
+            req.setAttribute("message", e.getMessage());
 
-        RequestDispatcher requestDispatcher =
-                req.getRequestDispatcher("/WEB-INF/jsp/LogIn.jsp");
-        requestDispatcher.forward(req, resp);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/LogIn.jsp");
+            requestDispatcher.forward(req, resp);
+        }
     }
 }
