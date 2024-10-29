@@ -8,25 +8,28 @@ public class LoginService {
     UserDAO userDAO = new UserDAOInMemory();
 
     public User checkUser(String username, String password, int id){
-        User user = userDAO.findByUsernameAndPassword(username, password, id);
+        return userDAO.findByUsername(username);
+    }
+
+    public User createUser(String username, String password, String passwordCheck, String name) {
+        if (!password.equals(passwordCheck)) {
+            throw new RuntimeException("Las contraseñas no coinciden");
+        }
+        if (password.length() < 5) {
+            throw new RuntimeException("La contraseña es demasiado corta");
+        }
+        if (userDAO.findByUsername(username) != null) {
+            throw new RuntimeException("El nombre de usuario ya está en uso");
+        }
+
+        User user = new User(username, password, name);
+        userDAO.newUser(user);
+
+        System.out.println("Cuenta creada");
+        System.out.println("Username: " + username + " Pass: " + password);
         return user;
     }
 
-    public User createUser(String username, String password, String passwordCheck, String name, int id) {
-        User user = new User(username, password, name, id);
-        if (!password.equals(passwordCheck)) {
-            throw new RuntimeException("Passwords no coincideixen");
-        }
-        if (password.length() < 5)
-            throw new RuntimeException("Password too short");
-        userDAO.newUser(user);
-        if(password.equals(passwordCheck)){
-            UserDAOInMemory register = new UserDAOInMemory();
-            register.addNewUser(username, password, name, id);
-            System.out.println("Account created"); // TODO: Message
-            System.out.println("Username: "+ username + " Pass: " + password);
-        }else System.out.println("Paswords doesnt match!");
-        return user;
         /*
 
         for(User u : userDAO{
@@ -43,5 +46,5 @@ public class LoginService {
                 System.out.println("Username: "+ username + " Pass: " + password);
             }else System.out.println("Paswords doesnt match!");
         }*/
-    }
+
 }

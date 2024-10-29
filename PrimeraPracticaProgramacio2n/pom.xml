@@ -81,11 +81,11 @@
             <container>
               <containerId>tomcat7x</containerId>
               <type>installed</type>
-              <home>/home/estudiant/Escriptori/Docker/PrimeraPracticaTomcat</home>
+              <home>/home/estudiant/Escriptori/Docker/tomcat/</home>
             </container>
             <configuration>
               <type>existing</type>
-              <home>/home/estudiant/Escriptori/Docker/PrimeraPracticaTomcat</home>
+              <home>/home/estudiant/Escriptori/Docker/tomcat/</home>
             </configuration>
           </configuration>
         </plugin>

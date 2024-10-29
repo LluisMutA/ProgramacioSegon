@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet("/login2")
 public class LoginServlet extends HttpServlet {
     LoginService loginService = new LoginService();
     @Override

@@ -8,7 +8,6 @@ public class Utils {
         HttpSession session = req.getSession();
         String user = (String) session.getAttribute("user");
         if(user == null){
-
             return false;
         }
         req.setAttribute("username", user);
