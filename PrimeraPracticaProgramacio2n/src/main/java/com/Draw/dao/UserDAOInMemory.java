@@ -16,6 +16,13 @@ public class UserDAOInMemory  implements  UserDAO{
     }
 
     @Override
+    public User newUserCredentials(String username, String password, String name) {
+        User user = new User(username, password, name);
+        newUser(user);
+        return user;
+    }
+
+    @Override
     public User findByUsername(String username){
         for (User u: users){
             if(u.getUsername().equals(username)){
@@ -27,7 +34,7 @@ public class UserDAOInMemory  implements  UserDAO{
     }
 
     @Override
-    public User chekUsernameAndPassword(String username, String password) {
+    public User checkUsernameAndPassword(String username, String password) {
         for (User user : users) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return user;
@@ -38,17 +45,10 @@ public class UserDAOInMemory  implements  UserDAO{
 
     @Override
     public void newUser(User user) {
-        for(User u: users) {
-            if (u.getUsername().equals(user.getUsername())) {
-                // Has trobat duplicat
-                throw new RuntimeException("Usuari duplicat");
-            }
-        }
-
         user.setId(users.size()+1);
         users.add(user);
         for(User s: users){
-        System.out.println("Username" + s.getUsername() + "Password" + s.getPassword() + "Name" + s.getName() + "ID" + s.getId());
+            System.out.println("Username" + s.getUsername() + "Password" + s.getPassword() + "Name" + s.getName() + "ID" + s.getId());
+        }
     }
-}
 }

@@ -21,7 +21,7 @@
 </form>
 
  <br>
- <a href="/Register">New User?</a>
+ <a href="/register">New User?</a>
 
 </body>
 </html>

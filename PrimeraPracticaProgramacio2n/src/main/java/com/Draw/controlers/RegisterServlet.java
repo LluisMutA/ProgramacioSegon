@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/Register")
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
     LoginService loginService = new LoginService();

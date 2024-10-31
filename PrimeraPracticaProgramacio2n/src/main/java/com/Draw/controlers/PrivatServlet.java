@@ -12,11 +12,11 @@ import java.io.IOException;
 public class PrivatServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (!Utils.userOK(req)) {
-            resp.sendRedirect("/login");
-            return;
-        }
-
+//        if (!Utils.userOK(req)) {
+//            resp.sendRedirect("/login");
+//            return;
+//        }
+//TODO: PONERBIEN ACORDATE DE DESCOMENTAR LAS 3 LINEAS DE ARRIBA AL ACABAR EL CANVAS
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/private.jsp");
         requestDispatcher.forward(req, resp);
     }

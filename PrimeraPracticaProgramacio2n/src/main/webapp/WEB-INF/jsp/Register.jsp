@@ -9,19 +9,19 @@
     <form action="Register" method="post">
 
         <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name">
         <br><br>
 
         <label for="username">Nombre de Usuario:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username">
         <br><br>
 
         <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required minlength="5">
+        <input type="password" id="password" name="password">
         <br><br>
 
         <label for="passwordCheck">Confirma la Contraseña:</label>
-        <input type="password" id="passwordCheck" name="passwordCheck" required>
+        <input type="password" id="passwordCheck" name="passwordCheck">
         <br><br>
 
         <button type="submit">Registrarse</button>
