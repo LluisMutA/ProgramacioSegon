@@ -15,13 +15,18 @@
                 <div>Benvingut ${username}</div>
                 <a href="/logout">Cerrar Sesión</a>
 
-                <div><canvas id="canvas" width="800" height="800"></canvas></div>
+                <div><canvas id="canvas" width="500" height="500"></canvas></div>
+                <ul id="listaFiguras"></ul>
+
                 <div>
                     <button id="cuadrado">Cuadrado</button>
                     <button id="triangulo">Triangulo</button>
                     <button id="circulo">Circulo</button>
                     <button id="estrella">Estrella</button>
                     <button id="draw">Draw</button>
+                </div>
+                <div>
+                    <button id="clearCanvas">Borrar Todo</button>
                 </div>
 
                 <style>

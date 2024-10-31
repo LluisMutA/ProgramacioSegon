@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>Formulario de Registro</h2>
-    <form action="Register" method="post">
+    <form action="register" method="post">
 
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name">

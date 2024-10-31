@@ -38,3 +38,8 @@ public class PrivatServlet extends HttpServlet {
 //        requestDispatcher.forward(req, resp);
 //    }
 //}
+
+
+// Session s = resp.getSessions
+// String user = s.getAtribute(user)
+// comprovar si user no es null
