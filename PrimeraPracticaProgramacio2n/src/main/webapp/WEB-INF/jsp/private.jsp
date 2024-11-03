@@ -28,6 +28,15 @@
                 <div>
                     <button id="clearCanvas">Borrar Todo</button>
                 </div>
+                <br>
+                <div>
+                    <form method="post" action="/save-draw">
+                        <input type="hidden" name="saveDraw" id="saveDraw">
+                        <label for="drawTitle">Nombre del dibujo: </label>
+                        <input type="text" name="drawTitle" id="drawTitle">
+                        <button type="submit">Guardar Dibujo</button>
+                    </form>
+                </div>
 
                 <style>
                     #canvas {

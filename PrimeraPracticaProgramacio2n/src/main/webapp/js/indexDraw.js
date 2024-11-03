@@ -5,10 +5,12 @@ const $triangulo = document.querySelector("#triangulo");
 const $estrella = document.querySelector("#estrella");
 const $draw = document.querySelector("#draw");
 const $clearCanvas = document.querySelector("#clearCanvas")
+const $saveDraw = document.querySelector('#saveDraw')
+const $drawTitle = document.querySelector('#drawTitle')
 
 const ctx = $canvas.getContext("2d");
 let figuras = [];
-const stringFiguras = JSON.stringify(figuras);
+JSON.stringify(figuras);
 
 function addFigura(tipo, x, y, size, drawPath) {
   figuras.push({ tipo, x, y, size, drawPath }); 
@@ -20,6 +22,9 @@ ctx.clearRect(0, 0, $canvas.width, $canvas.height);
 figuras = [];
 actualizarLista();
 })
+
+$drawTitle.value = `Untitled Draw ${Math.floor(Math.random()*10000)}`;
+
 
 let figura = null;
 let drawing = false;
@@ -175,6 +180,7 @@ function actualizarLista() {
     $item.appendChild($deleteButton);
     $listaFiguras.appendChild($item);
   });
+  $saveDraw.value = JSON.stringify(figuras);
 }
 
 function eliminarFigura(index) {
