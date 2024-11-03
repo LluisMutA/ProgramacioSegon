@@ -26,6 +26,11 @@
             <button id="circulo">Circulo</button>
             <button id="estrella">Estrella</button>
             <button id="draw">Draw</button>
+        
+            <!-- Nuevos botones para color de trazo y relleno -->
+            <input type="color" id="strokeColor" value="#000000">
+            <input type="color" id="fillColor" value="#FFFFFF">
+            <button id="setBackground">Fondo Canvas</button>
         </div>
 
         <!-- Canvas en el centro -->

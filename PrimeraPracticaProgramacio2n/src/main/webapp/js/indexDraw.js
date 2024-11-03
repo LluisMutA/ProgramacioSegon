@@ -7,15 +7,35 @@ const $draw = document.querySelector("#draw");
 const $clearCanvas = document.querySelector("#clearCanvas");
 const $saveDraw = document.querySelector('#saveDraw');
 const $drawTitle = document.querySelector('#drawTitle');
-
+const $strokeColor = document.querySelector("#strokeColor");
+const $fillColor = document.querySelector("#fillColor");
+const $setBackground = document.querySelector("#setBackground");
 const ctx = $canvas.getContext("2d");
+
+let strokeColor = $strokeColor.value;
+let fillColor = $fillColor.value;
+let backgroundColor = "#FFFFFF";
 let figuras = [];
 JSON.stringify(figuras);
 
-function addFigura(tipo, x, y, size, drawPath) {
+function addFigura(tipo, x, y, size, drawPath) {  // Falta añadir tamaño y color
   figuras.push({ tipo, x, y, size, drawPath });
   actualizarLista();
 }
+
+$strokeColor.addEventListener("input", (event) => {
+  strokeColor = event.target.value;
+});
+
+$fillColor.addEventListener("input", (event) => {
+  fillColor = event.target.value;
+});
+
+$setBackground.addEventListener("click", () => {
+  backgroundColor = $fillColor.value; // Usa el color de relleno como fondo
+  $canvas.style.backgroundColor = backgroundColor; // Cambia el color de fondo del canvas
+  redibujarCanvas(); // Redibuja el canvas con el nuevo color de fondo
+});
 
 $clearCanvas.addEventListener("click", () => {
   const confirmClear = confirm("¿Estás seguro de que deseas borrar el dibujo?");
@@ -111,9 +131,12 @@ function drawCuadrado(event) {
   const x = event.clientX - $canvas.offsetLeft;
   const y = event.clientY - $canvas.offsetTop;
   const size = 10;
+  ctx.fillStyle = fillColor;
+  ctx.strokeStyle = strokeColor;
   ctx.beginPath();
   ctx.rect(x - size / 2, y - size / 2, size, size);
-  ctx.stroke();
+  ctx.fill(); // Rellena el cuadrado
+  ctx.stroke(); // Dibuja el borde
   addFigura("cuadrado", x, y, size);
 }
 
@@ -121,9 +144,12 @@ function drawCirculo(event) {
   const x = event.clientX - $canvas.offsetLeft;
   const y = event.clientY - $canvas.offsetTop;
   const radio = 30;
+  ctx.fillStyle = fillColor;
+  ctx.strokeStyle = strokeColor;
   ctx.beginPath();
   ctx.arc(x, y, radio, 0, 2 * Math.PI);
-  ctx.stroke();
+  ctx.fill(); // Rellena el círculo
+  ctx.stroke(); // Dibuja el borde
   addFigura("circulo", x, y, radio);
 }
 
@@ -131,12 +157,15 @@ function drawTriangulo(event) {
   const x = event.clientX - $canvas.offsetLeft;
   const y = event.clientY - $canvas.offsetTop;
   const size = 20;
+  ctx.fillStyle = fillColor;
+  ctx.strokeStyle = strokeColor;
   ctx.beginPath();
   ctx.moveTo(x, y - size);
   ctx.lineTo(x - size, y + size);
   ctx.lineTo(x + size, y + size);
   ctx.closePath();
-  ctx.stroke();
+  ctx.fill(); // Rellena el triángulo
+  ctx.stroke(); // Dibuja el borde
   addFigura("triangulo", x, y, size);
 }
 
@@ -147,6 +176,8 @@ function drawEstrella(event) {
   const radioInterior = 20;
   const puntas = 7;
 
+  ctx.fillStyle = fillColor;
+  ctx.strokeStyle = strokeColor;
   ctx.beginPath();
   for (let i = 0; i < puntas * 2; i++) {
     const radio = i % 2 === 0 ? radioExterior : radioInterior;
@@ -160,7 +191,8 @@ function drawEstrella(event) {
     }
   }
   ctx.closePath();
-  ctx.stroke();
+  ctx.fill(); // Rellena la estrella
+  ctx.stroke(); // Dibuja el borde
   addFigura("estrella", x, y, radioExterior);
 }
 
@@ -191,19 +223,25 @@ function eliminarFigura(index) {
 }
 
 function redibujarCanvas() {
-  ctx.clearRect(0, 0, $canvas.width, $canvas.height);
+  ctx.fillStyle = backgroundColor; // Usa el color de fondo actual
+  ctx.fillRect(0, 0, $canvas.width, $canvas.height); // Rellena el canvas con el color de fondo
 
   figuras.forEach(figura => {
+    ctx.fillStyle = fillColor; // Aplica el color de relleno
+    ctx.strokeStyle = strokeColor; // Aplica el color de trazo
+
     switch (figura.tipo) {
       case "cuadrado":
         ctx.beginPath();
         ctx.rect(figura.x - figura.size / 2, figura.y - figura.size / 2, figura.size, figura.size);
-        ctx.stroke();
+        ctx.fill(); // Rellena el cuadrado
+        ctx.stroke(); // Dibuja el borde
         break;
       case "circulo":
         ctx.beginPath();
         ctx.arc(figura.x, figura.y, figura.size, 0, 2 * Math.PI);
-        ctx.stroke();
+        ctx.fill(); // Rellena el círculo
+        ctx.stroke(); // Dibuja el borde
         break;
       case "triangulo":
         ctx.beginPath();
@@ -211,7 +249,8 @@ function redibujarCanvas() {
         ctx.lineTo(figura.x - figura.size, figura.y + figura.size);
         ctx.lineTo(figura.x + figura.size, figura.y + figura.size);
         ctx.closePath();
-        ctx.stroke();
+        ctx.fill(); // Rellena el triángulo
+        ctx.stroke(); // Dibuja el borde
         break;
       case "draw":
         ctx.beginPath();
@@ -222,7 +261,7 @@ function redibujarCanvas() {
             ctx.lineTo(point.x, point.y);
           }
         });
-        ctx.stroke();
+        ctx.stroke(); // Dibuja el trazo
         break;
       case "estrella":
         dibujarEstrella(figura.x, figura.y, figura.size);
@@ -230,6 +269,7 @@ function redibujarCanvas() {
     }
   });
 }
+
 
 function dibujarEstrella(x, y, size) {
   const radioExterior = size;
