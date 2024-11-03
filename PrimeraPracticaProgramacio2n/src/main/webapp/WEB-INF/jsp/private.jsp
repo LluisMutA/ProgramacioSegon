@@ -1,49 +1,54 @@
-<%@ page isELIgnored="false" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="es">
 
-            <html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/indexDraw.js"></script>
+</head>
 
-            <head>
-                <title>Title</title>
-                <script defer src="./js/indexDraw.js"></script>
-            </head>
+<body>
+    <!-- Barra de navegación superior -->
+    <div class="navbar">
+        <h1>Private</h1>
+        <div>Benvingut ${username}</div>
+        <a href="/logout">Cerrar Sesión</a>
+    </div>
 
-            <body>
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Botones a la izquierda -->
+        <div class="sidebar-left">
+            <button id="cuadrado">Cuadrado</button>
+            <button id="triangulo">Triangulo</button>
+            <button id="circulo">Circulo</button>
+            <button id="estrella">Estrella</button>
+            <button id="draw">Draw</button>
+        </div>
 
-                <h1>Private</h1>
-                <div>Benvingut ${username}</div>
-                <a href="/logout">Cerrar Sesión</a>
+        <!-- Canvas en el centro -->
+        <div class="canvas-container">
+            <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
 
-                <div><canvas id="canvas" width="500" height="500"></canvas></div>
-                <ul id="listaFiguras"></ul>
+        <!-- Lista de figuras a la derecha -->
+        <div class="sidebar-right">
+            <ul id="listaFiguras"></ul>
+        </div>
+    </div>
 
-                <div>
-                    <button id="cuadrado">Cuadrado</button>
-                    <button id="triangulo">Triangulo</button>
-                    <button id="circulo">Circulo</button>
-                    <button id="estrella">Estrella</button>
-                    <button id="draw">Draw</button>
-                </div>
-                <div>
-                    <button id="clearCanvas">Borrar Todo</button>
-                </div>
-                <br>
-                <div>
-                    <form method="post" action="/save-draw">
-                        <input type="hidden" name="saveDraw" id="saveDraw">
-                        <label for="drawTitle">Nombre del dibujo: </label>
-                        <input type="text" name="drawTitle" id="drawTitle">
-                        <button type="submit">Guardar Dibujo</button>
-                    </form>
-                </div>
+    <!-- Contenedor para los botones de guardar y borrar debajo del canvas -->
+    <div class="save-container">
+        <form method="post" action="/save-draw">
+            <input type="hidden" name="saveDraw" id="saveDraw">
+            <label for="drawTitle">Nombre del dibujo: </label>
+            <input type="text" name="drawTitle" id="drawTitle">
+            <button type="submit">Guardar Dibujo</button>
+        </form>
+        <button id="clearCanvas">Borrar Todo</button>
+    </div>
+</body>
 
-                <style>
-                    #canvas {
-                        border: 1px solid black;
-                    }
-                </style>
-
-            </body>
-
-            </html>
+</html>
