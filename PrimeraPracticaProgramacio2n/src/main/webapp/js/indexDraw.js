@@ -5,36 +5,56 @@ const $triangulo = document.querySelector("#triangulo");
 const $estrella = document.querySelector("#estrella");
 const $draw = document.querySelector("#draw");
 const $clearCanvas = document.querySelector("#clearCanvas");
-const $saveDraw = document.querySelector('#saveDraw');
-const $drawTitle = document.querySelector('#drawTitle');
+const $saveDraw = document.querySelector("#saveDraw");
+const $drawTitle = document.querySelector("#drawTitle");
 const $strokeColor = document.querySelector("#strokeColor");
 const $fillColor = document.querySelector("#fillColor");
 const $setBackground = document.querySelector("#setBackground");
 const ctx = $canvas.getContext("2d");
+const $backgroundColor = document.querySelector("#backgroundColor");
+
 
 let strokeColor = $strokeColor.value;
 let fillColor = $fillColor.value;
 let backgroundColor = "#FFFFFF";
 let figuras = [];
-JSON.stringify(figuras);
 
-function addFigura(tipo, x, y, size, drawPath) {  // Falta añadir tamaño y color
-  figuras.push({ tipo, x, y, size, drawPath });
+function addFigura(
+  tipo,
+  startX,
+  startY,
+  endX,
+  endY,
+  drawPath,
+  fillColor,
+  strokeColor
+) {
+  figuras.push({
+    tipo,
+    startX,
+    startY,
+    endX,
+    endY,
+    drawPath,
+    fillColor,
+    strokeColor,
+  });
   actualizarLista();
 }
 
-$strokeColor.addEventListener("input", (event) => {
-  strokeColor = event.target.value;
+
+$strokeColor.addEventListener("input", () => {
+  strokeColor = $strokeColor.value;
 });
 
-$fillColor.addEventListener("input", (event) => {
-  fillColor = event.target.value;
+$fillColor.addEventListener("input", () => {
+  fillColor = $fillColor.value;
 });
 
 $setBackground.addEventListener("click", () => {
   backgroundColor = $fillColor.value; // Usa el color de relleno como fondo
-  $canvas.style.backgroundColor = backgroundColor; // Cambia el color de fondo del canvas
-  redibujarCanvas(); // Redibuja el canvas con el nuevo color de fondo
+  $canvas.style.backgroundColor = backgroundColor;
+  $backgroundColor.value = backgroundColor;
 });
 
 $clearCanvas.addEventListener("click", () => {
@@ -43,6 +63,8 @@ $clearCanvas.addEventListener("click", () => {
     ctx.clearRect(0, 0, $canvas.width, $canvas.height);
     figuras = [];
     actualizarLista();
+    backgroundColor = "#FFFFFF";
+    $canvas.style.backgroundColor = backgroundColor;
   }
 });
 
@@ -60,25 +82,13 @@ const allFigures = {
   draw: "draw",
 };
 
-$canvas.addEventListener("click", (event) => {
-  if (figura === null) {
-    return;
-  }
-  if (figura === allFigures.cuadrado) {
-    drawCuadrado(event);
-  }
-  if (figura === allFigures.circulo) {
-    drawCirculo(event);
-  }
-  if (figura === allFigures.triangulo) {
-    drawTriangulo(event);
-  }
-  if (figura === allFigures.estrella) {
-    drawEstrella(event);
-  }
-});
+let startX = null;
+let startY = null;
+let endX = null;
+let endY = null;
 
 $canvas.addEventListener("mousedown", (event) => {
+  ctx.strokeStyle = strokeColor;
   if (figura === allFigures.draw) {
     drawing = true;
     drawPath = [];
@@ -87,12 +97,14 @@ $canvas.addEventListener("mousedown", (event) => {
     const y = event.clientY - $canvas.offsetTop;
     ctx.moveTo(x, y);
     drawPath.push({ x, y });
+    return;
   }
+  startX = event.clientX - $canvas.offsetLeft;
+  startY = event.clientY - $canvas.offsetTop;
 });
 
 $canvas.addEventListener("mousemove", (event) => {
   if (!drawing || figura !== allFigures.draw) return;
-
   const x = event.clientX - $canvas.offsetLeft;
   const y = event.clientY - $canvas.offsetTop;
   ctx.lineTo(x, y);
@@ -100,11 +112,39 @@ $canvas.addEventListener("mousemove", (event) => {
   drawPath.push({ x, y });
 });
 
-$canvas.addEventListener("mouseup", () => {
+$canvas.addEventListener("mouseup", (event) => {
   if (drawing && figura === allFigures.draw) {
-    addFigura("draw", null, null, null, drawPath);
+    addFigura("draw", null, null, null, null, drawPath, fillColor, strokeColor);
+    drawing = false;
+    return;
   }
-  drawing = false;
+  endX = event.clientX - $canvas.offsetLeft;
+  endY = event.clientY - $canvas.offsetTop;
+  if (figura === null) {
+    return;
+  }
+  if (figura === allFigures.cuadrado) {
+    drawCuadrado();
+  }
+  if (figura === allFigures.circulo) {
+    drawCirculo();
+  }
+  if (figura === allFigures.triangulo) {
+    drawTriangulo();
+  }
+  if (figura === allFigures.estrella) {
+    drawEstrella();
+  }
+  addFigura(
+    figura,
+    startX,
+    startY,
+    endX,
+    endY,
+    null,
+    fillColor,
+    strokeColor
+  );
 });
 
 $cuadrado.addEventListener("click", () => {
@@ -127,73 +167,65 @@ $draw.addEventListener("click", () => {
   figura = allFigures.draw;
 });
 
-function drawCuadrado(event) {
-  const x = event.clientX - $canvas.offsetLeft;
-  const y = event.clientY - $canvas.offsetTop;
-  const size = 10;
+function drawCuadrado() {
   ctx.fillStyle = fillColor;
   ctx.strokeStyle = strokeColor;
   ctx.beginPath();
-  ctx.rect(x - size / 2, y - size / 2, size, size);
+  ctx.rect(startX, startY, endX - startX, endY - startY);
   ctx.fill(); // Rellena el cuadrado
   ctx.stroke(); // Dibuja el borde
-  addFigura("cuadrado", x, y, size);
 }
 
-function drawCirculo(event) {
-  const x = event.clientX - $canvas.offsetLeft;
-  const y = event.clientY - $canvas.offsetTop;
-  const radio = 30;
+function drawCirculo() {
+  const radioX = Math.abs(endX - startX) / 2;
+  const radioY = Math.abs(endY - startY) / 2;
+  const centerX = (endX - startX) / 2 + startX;
+  const centerY = (endY - startY) / 2 + startY;
+
   ctx.fillStyle = fillColor;
   ctx.strokeStyle = strokeColor;
   ctx.beginPath();
-  ctx.arc(x, y, radio, 0, 2 * Math.PI);
-  ctx.fill(); // Rellena el círculo
-  ctx.stroke(); // Dibuja el borde
-  addFigura("circulo", x, y, radio);
+  ctx.ellipse(centerX, centerY, radioX, radioY, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.stroke();
 }
 
-function drawTriangulo(event) {
-  const x = event.clientX - $canvas.offsetLeft;
-  const y = event.clientY - $canvas.offsetTop;
-  const size = 20;
+function drawTriangulo() {
   ctx.fillStyle = fillColor;
   ctx.strokeStyle = strokeColor;
   ctx.beginPath();
-  ctx.moveTo(x, y - size);
-  ctx.lineTo(x - size, y + size);
-  ctx.lineTo(x + size, y + size);
+  ctx.moveTo((endX - startX) / 2 + startX, startY);
+  ctx.lineTo(endX, endY);
+  ctx.lineTo(startX, endY);
+  ctx.lineTo((endX - startX) / 2 + startX, startY);
   ctx.closePath();
   ctx.fill(); // Rellena el triángulo
   ctx.stroke(); // Dibuja el borde
-  addFigura("triangulo", x, y, size);
 }
 
-function drawEstrella(event) {
-  const x = event.clientX - $canvas.offsetLeft;
-  const y = event.clientY - $canvas.offsetTop;
-  const radioExterior = 40;
-  const radioInterior = 20;
-  const puntas = 7;
-
+function drawEstrella() {
   ctx.fillStyle = fillColor;
   ctx.strokeStyle = strokeColor;
+  const radio = Math.abs(endX - startX) / 2;
+  const centerX = (endX - startX) / 2 + startX;
+  const centerY = (endY - startY) / 2 + startY;
+
+  const lados = 7;
+  const pasos = 3;
+
+  const estrella = lados / pasos;
+  const rad = (2 * Math.PI) / estrella;
+
+  // ctx.rotate((3 * Math.PI) / 2);
   ctx.beginPath();
-  for (let i = 0; i < puntas * 2; i++) {
-    const radio = i % 2 === 0 ? radioExterior : radioInterior;
-    const angulo = (i * Math.PI) / puntas;
-    const px = x + radio * Math.cos(angulo);
-    const py = y + radio * Math.sin(angulo);
-    if (i === 0) {
-      ctx.moveTo(px, py);
-    } else {
-      ctx.lineTo(px, py);
-    }
+  for (let i = 0; i < lados; i++) {
+    const x = centerX + radio * Math.cos(rad * i);
+    const y = centerY + radio * Math.sin(rad * i);
+    ctx.lineTo(x, y);
   }
   ctx.closePath();
-  ctx.fill(); // Rellena la estrella
-  ctx.stroke(); // Dibuja el borde
-  addFigura("estrella", x, y, radioExterior);
+  ctx.stroke();
+  ctx.fill();
 }
 
 function actualizarLista() {
@@ -201,8 +233,9 @@ function actualizarLista() {
   $listaFiguras.innerHTML = "";
 
   figuras.forEach((figura, index) => {
+    
     const $item = document.createElement("li");
-    $item.textContent = `${figura.tipo} en (${figura.x}, ${figura.y})`;
+    $item.textContent = `${figura.tipo} en (${figura.startX}, ${figura.startY})`;
 
     const $deleteButton = document.createElement("button");
     $deleteButton.textContent = "Borrar";
@@ -220,79 +253,53 @@ function eliminarFigura(index) {
   figuras.splice(index, 1);
   redibujarCanvas();
   actualizarLista();
+  console.log(index);
 }
 
 function redibujarCanvas() {
-  ctx.fillStyle = backgroundColor; // Usa el color de fondo actual
-  ctx.fillRect(0, 0, $canvas.width, $canvas.height); // Rellena el canvas con el color de fondo
+  ctx.clearRect(0, 0, $canvas.width, $canvas.height); 
 
-  figuras.forEach(figura => {
-    ctx.fillStyle = fillColor; // Aplica el color de relleno
-    ctx.strokeStyle = strokeColor; // Aplica el color de trazo
+  // Redibuja cada figura encima del fondo
+  figuras.forEach((figura) => {
+    fillColor = figura.fillColor; // Usa el color de relleno de la figura
+    strokeColor = figura.strokeColor; // Usa el color de trazo de la figura
+
+    startX = figura.startX;
+    startY = figura.startY;
+    endX = figura.endX;
+    endY = figura.endY;
 
     switch (figura.tipo) {
       case "cuadrado":
-        ctx.beginPath();
-        ctx.rect(figura.x - figura.size / 2, figura.y - figura.size / 2, figura.size, figura.size);
-        ctx.fill(); // Rellena el cuadrado
-        ctx.stroke(); // Dibuja el borde
+        drawCuadrado();
         break;
       case "circulo":
-        ctx.beginPath();
-        ctx.arc(figura.x, figura.y, figura.size, 0, 2 * Math.PI);
-        ctx.fill(); // Rellena el círculo
-        ctx.stroke(); // Dibuja el borde
+        drawCirculo();
         break;
       case "triangulo":
-        ctx.beginPath();
-        ctx.moveTo(figura.x, figura.y - figura.size);
-        ctx.lineTo(figura.x - figura.size, figura.y + figura.size);
-        ctx.lineTo(figura.x + figura.size, figura.y + figura.size);
-        ctx.closePath();
-        ctx.fill(); // Rellena el triángulo
-        ctx.stroke(); // Dibuja el borde
+        drawTriangulo();
         break;
       case "draw":
         ctx.beginPath();
+        ctx.strokeStyle = strokeColor; 
+
         figura.drawPath.forEach((point, index) => {
           if (index === 0) {
             ctx.moveTo(point.x, point.y);
           } else {
             ctx.lineTo(point.x, point.y);
           }
+
         });
-        ctx.stroke(); // Dibuja el trazo
+        ctx.stroke();
         break;
       case "estrella":
-        dibujarEstrella(figura.x, figura.y, figura.size);
+        drawEstrella();
         break;
     }
   });
 }
-
-
-function dibujarEstrella(x, y, size) {
-  const radioExterior = size;
-  const radioInterior = size / 2;
-  const puntas = 7;
-
-  ctx.beginPath();
-  for (let i = 0; i < puntas * 2; i++) {
-    const radio = i % 2 === 0 ? radioExterior : radioInterior;
-    const angulo = (i * Math.PI) / puntas;
-    const px = x + radio * Math.cos(angulo);
-    const py = y + radio * Math.sin(angulo);
-    if (i === 0) {
-      ctx.moveTo(px, py);
-    } else {
-      ctx.lineTo(px, py);
-    }
-  }
-  ctx.closePath();
-  ctx.stroke();
-}
-
 function scrollToBottom() {
-  const listaFigurasContainer = document.querySelector('.sidebar-right');
+  const listaFigurasContainer = document.querySelector(".sidebar-right");
   listaFigurasContainer.scrollTop = listaFigurasContainer.scrollHeight;
 }

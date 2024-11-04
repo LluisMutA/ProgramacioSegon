@@ -1,11 +1,6 @@
-package com.Draw.controlers;
+package com.Draw.controllers;
 
 import com.Draw.model.User;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,16 +17,3 @@ public class Utils {
         return user != null; // Devuelve verdadero si el usuario está autenticado
     }
 }
-
-
-//public class Utils {
-//    public static boolean userOK(HttpServletRequest req){
-//        HttpSession session = req.getSession();
-//        String user = (String) session.getAttribute("user");
-//        if(user == null){
-//            return false;
-//        }
-//        req.setAttribute("username", user);
-//        return true;
-//    }
-//}

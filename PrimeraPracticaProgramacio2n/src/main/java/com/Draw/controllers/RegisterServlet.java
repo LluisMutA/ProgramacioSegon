@@ -1,6 +1,5 @@
-package com.Draw.controlers;
+package com.Draw.controllers;
 
-import com.Draw.model.User;
 import com.Draw.services.LoginService;
 
 import javax.servlet.RequestDispatcher;
@@ -9,35 +8,35 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
+
     LoginService loginService = new LoginService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         RequestDispatcher requestDispatcher =
-                req.getRequestDispatcher("/WEB-INF/jsp/LogIn.jsp");
+                req.getRequestDispatcher("/WEB-INF/jsp/Register.jsp");
         requestDispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String name = req.getParameter("name");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        String passwordCheck = req.getParameter("passwordCheck");
 
         try {
-            User user = loginService.login(username, password);
-
-            HttpSession session = req.getSession();
-            session.setAttribute("user", user);
-
-            resp.sendRedirect("/private");
-        } catch (Exception e) {
+            loginService.createUser(username, password, passwordCheck, name);
+            resp.sendRedirect("/login");
+        } catch(Exception e) {
             req.setAttribute("message", e.getMessage());
-
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/LogIn.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/Register.jsp");
             requestDispatcher.forward(req, resp);
         }
     }

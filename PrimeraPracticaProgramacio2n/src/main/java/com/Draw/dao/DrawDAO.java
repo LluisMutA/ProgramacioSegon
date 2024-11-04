@@ -8,8 +8,11 @@ import java.util.Date;
 import java.util.List;
 
 public interface DrawDAO{
-    void addDraw(String drawTitle, List<Figure> fig, User user, Date creationDate, Date modificationDate);
+    void addDraw(String drawTitle, List<Figure> fig, User user, Date creationDate, Date modificationDate, String backgroundColor);
 
     List<Draw> findAllDraws();
 
+    Draw findByName(String name);
+
+    void deleteByName(String name);
 }

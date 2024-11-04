@@ -10,6 +10,17 @@ public class Draw {
     private User user;
     private Date creationDate;
     private Date modificationDate;
+    private String backgroundColor;
+
+
+    public Draw(String drawTitle, List<Figure> fig, User user, Date creationDate, Date modificationDate, String backgroundColor) {
+        this.drawTitle = drawTitle;
+        this.fig = fig;
+        this.user = user;
+        this.creationDate = creationDate;
+        this.modificationDate = modificationDate;
+        this.backgroundColor = backgroundColor;
+    }
 
     @Override
     public String toString() {
@@ -19,15 +30,32 @@ public class Draw {
                 ", user=" + user +
                 ", creationDate=" + creationDate +
                 ", modificationDate=" + modificationDate +
+                ", backgroundColor='" + backgroundColor + '\'' +
                 '}';
     }
 
-    public Draw(String drawTitle, List<Figure> fig, User user, Date creationDate, Date modificationDate) {
+    public String getDrawTitle() {
+        return drawTitle;
+    }
+
+    public void setDrawTitle(String drawTitle) {
         this.drawTitle = drawTitle;
+    }
+
+    public List<Figure> getFig() {
+        return fig;
+    }
+
+    public void setFig(List<Figure> fig) {
         this.fig = fig;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
         this.user = user;
-        this.creationDate = creationDate;
-        this.modificationDate = modificationDate;
     }
 
     public Date getCreationDate() {
@@ -46,27 +74,11 @@ public class Draw {
         this.modificationDate = modificationDate;
     }
 
-    public User getUser() {
-        return user;
+    public String getBackgroundColor() {
+        return backgroundColor;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getDrawTitle() {
-        return drawTitle;
-    }
-
-    public void setDrawTitle(String drawTitle) {
-        this.drawTitle = drawTitle;
-    }
-
-    public List<Figure> getFig() {
-        return fig;
-    }
-
-    public void setFig(List<Figure> fig) {
-        this.fig = fig;
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
     }
 }
