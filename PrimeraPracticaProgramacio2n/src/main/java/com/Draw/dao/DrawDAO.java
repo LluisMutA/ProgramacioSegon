@@ -14,5 +14,7 @@ public interface DrawDAO{
 
     Draw findByName(String name);
 
+    boolean matchTitleAndUser(String name, String title);
+
     void deleteByName(String name);
 }

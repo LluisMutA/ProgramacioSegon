@@ -45,6 +45,17 @@ public class DrawDAOInMemory implements DrawDAO{
     }
 
     @Override
+    public boolean matchTitleAndUser(String name, String title) {
+        UserDAO userDAO = new UserDAOInMemory();
+        DrawDAO drawDAO = new DrawDAOInMemory();
+
+        String nameUsr = userDAO.findByUsername(name).getUsername();
+        String drawAuthor = String.valueOf(drawDAO.findByName(title).getUser());
+        if(nameUsr.equals(drawAuthor))return true;
+        else return false;
+    }
+
+    @Override
     public void deleteByName(String name) {
         draws.remove(findByName(name));
     }

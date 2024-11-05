@@ -303,3 +303,5 @@ function scrollToBottom() {
   const listaFigurasContainer = document.querySelector(".sidebar-right");
   listaFigurasContainer.scrollTop = listaFigurasContainer.scrollHeight;
 }
+redibujarCanvas();
+

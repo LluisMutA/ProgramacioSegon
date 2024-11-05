@@ -13,6 +13,7 @@ public class Draw {
     private String backgroundColor;
 
 
+
     public Draw(String drawTitle, List<Figure> fig, User user, Date creationDate, Date modificationDate, String backgroundColor) {
         this.drawTitle = drawTitle;
         this.fig = fig;

@@ -38,5 +38,12 @@
         </c:forEach>
       </tbody>
     </table>
+    <button onclick="location.href='/draw-gallery'">
+      Ir a la Galería
+      <img src="./images/gallery.png" alt="">
+  </button>
+  <button onclick="location.href='/private'">
+      Volver al canvas:
+  </button>
   </body>
 </html>

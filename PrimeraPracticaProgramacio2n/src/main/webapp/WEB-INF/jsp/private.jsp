@@ -78,6 +78,10 @@
             Ir a la Galería
             <img src="./images/gallery.png" alt="">
         </button>
+        <button onclick="location.href='/owned-gallery'">
+            Mis dibujos:
+        </button>
+        
     </div>
     
 </body>
