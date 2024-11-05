@@ -31,7 +31,7 @@
                 <td>
                     <a href="/view-canvas?name=${draw.drawTitle}">View</a>
                     <a href="/delete-draw?name=${draw.drawTitle}">Delete</a>
-                    <a href="">Edit</a>
+                    <a href="/private?name=${draw.drawTitle}">Edit</a>
                 </td>
             </tr>
           </c:if>

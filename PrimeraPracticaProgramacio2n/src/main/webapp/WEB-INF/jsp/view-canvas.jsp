@@ -5,7 +5,7 @@
 <html>
   <head>
     <title>Canvas View</title>
-    <link rel="stylesheet" href="./css/viewDraw.css"> <!-- Asegúrate de incluir el CSS -->
+    <link rel="stylesheet" href="./css/viewDraw.css">
     <script type="application/json" id="figuresJSON">${figures}</script>
     <script src="./js/viewCanvas.js" defer></script>
   </head>
