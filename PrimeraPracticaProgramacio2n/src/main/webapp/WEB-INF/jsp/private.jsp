@@ -17,7 +17,7 @@
     <!-- Barra de navegación superior -->
     <div class="navbar">
         <h1>Private</h1>
-        <div>Benvingut ${username}</div>
+        <div>Benvingut ${user}</div>
         <a href="/logout">Cerrar Sesión</a>
     </div>
 
@@ -59,20 +59,27 @@
     </div>
 
     <!-- Contenedor para los botones de guardar y borrar debajo del canvas -->
-<div class="save-container">
-    <form method="post" action="/save-draw">
-        <input type="hidden" name="saveDraw" id="saveDraw">
-        <label for="drawTitle">Nombre del dibujo: </label>
-        <input type="text" name="drawTitle" id="drawTitle">
-        <button type="submit">Guardar Dibujo
-            <img src="./images/saveDraw.png" alt="Guardar">
+    <div class="save-container">
+        <form method="post" action="/save-draw">
+            <input type="hidden" name="saveDraw" id="saveDraw">
+            <label for="drawTitle">Nombre del dibujo: </label>
+            <input type="text" name="drawTitle" id="drawTitle">
+            <button type="submit">
+                Guardar Dibujo
+                <img src="./images/saveDraw.png" alt="Guardar">
+            </button>
+            <input type="hidden" name="backgroundColor" id="backgroundColor" value="#FFFFFF">
+        </form>
+        <button id="clearCanvas">
+            Borrar Todo
+            <img src="./images/clearCanvas.png" alt="Borrar">
         </button>
-        <input type="hidden" name="backgroundColor" id="backgroundColor" value="#FFFFFF">
-    </form>
-    <button id="clearCanvas">Borrar Todo
-        <img src="./images/clearCanvas.png" alt="Borrar">
-    </button>
-</div>
+        <button onclick="location.href='/draw-gallery'">
+            Ir a la Galería
+            <img src="./images/gallery.png" alt="">
+        </button>
+    </div>
+    
 </body>
 
 </html>

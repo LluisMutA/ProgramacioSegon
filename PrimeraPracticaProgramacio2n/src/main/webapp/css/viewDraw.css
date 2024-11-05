@@ -1,0 +1,33 @@
+/* Colores basados en el esquema de Coolors */
+:root {
+    --color-primary: #668586;
+    --color-secondary: #82aeb1;
+    --color-tertiary: #93c6d6;
+    --color-accent: #a7acd9;
+    --color-highlight: #9e8fb2;
+    --color-white: #ffffff;
+}
+
+/* Estilo del cuerpo */
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+}
+
+/* Estilo del título y subtítulos */
+h1, h2 {
+    color: var(--color-white);
+}
+
+/* Estilo del canvas */
+#canvas {
+    border: 2px solid var(--color-primary);
+    background-color: var(--color-white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

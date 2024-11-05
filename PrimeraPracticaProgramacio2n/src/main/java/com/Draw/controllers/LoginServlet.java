@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             User user = loginService.login(username, password);
 
             HttpSession session = req.getSession();
-            session.setAttribute("user", user.getUsername());
+            session.setAttribute("user", user.getUsername()); // TODO: Comprobar si user o username
 
             resp.sendRedirect("/private");
         } catch (Exception e) {

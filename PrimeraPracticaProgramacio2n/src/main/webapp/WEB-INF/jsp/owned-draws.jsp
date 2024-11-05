@@ -5,7 +5,7 @@
 <html>
   <head>
     <title>Draw Gallery</title>
-    <link rel="stylesheet" href="./css/gallery.css"> 
+    <link rel="stylesheet" href="./css/gallery.css">
   </head>
   <body>
     <table>
@@ -21,6 +21,7 @@
       </thead>
       <tbody>
         <c:forEach items="${draws}" var="draw">
+        <c:if test="${draw.user.username == username}">
             <tr>
                 <td>${draw.user.username}</td>
                 <td>${draw.drawTitle}</td>
@@ -29,14 +30,13 @@
                 <td>${draw.modificationDate}</td>
                 <td>
                     <a href="/view-canvas?name=${draw.drawTitle}">View</a>
-                    <c:if test="${draw.user.username == username}">
-                      <a href="/delete-draw?name=${draw.drawTitle}">Delete</a>
-                    </c:if>
+                    <a href="/delete-draw?name=${draw.drawTitle}">Delete</a>
+                    <a href="">Edit</a>
                 </td>
             </tr>
+          </c:if>
         </c:forEach>
       </tbody>
     </table>
   </body>
 </html>
-

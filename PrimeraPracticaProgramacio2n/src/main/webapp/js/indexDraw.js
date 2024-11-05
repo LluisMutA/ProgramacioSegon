@@ -216,7 +216,6 @@ function drawEstrella() {
   const estrella = lados / pasos;
   const rad = (2 * Math.PI) / estrella;
 
-  // ctx.rotate((3 * Math.PI) / 2);
   ctx.beginPath();
   for (let i = 0; i < lados; i++) {
     const x = centerX + radio * Math.cos(rad * i);

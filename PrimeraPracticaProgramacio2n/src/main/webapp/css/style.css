@@ -13,13 +13,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 5px 15px; /* Espacio interno */
     background-color: var(--color-primary);
     color: var(--color-white);
     position: fixed;
     top: 0;
-    width: 100%;
-    height: 3%;
+    left: 0; /* Asegúrate de que empieza desde el borde izquierdo */
+    width: 100%; /* Establecer el ancho al 100% */
+    height: 40px; /* Aumentar el alto si es necesario */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     z-index: 1000;
 }
@@ -28,6 +29,8 @@
     color: var(--color-white);
     text-decoration: none;
     font-weight: bold;
+    padding: 0 15px; 
+    white-space: nowrap; 
 }
 
 .navbar a:hover {
@@ -127,7 +130,7 @@
     background-color: var(--color-tertiary);
 }
 
-/* Contenedor para guardar el dibujo */
+/* Contenedor para guardar el dibujo y botón de galería */
 .save-container {
     display: flex;
     justify-content: center;
@@ -149,11 +152,11 @@
     border-radius: 4px;
 }
 
-.save-container button {
+.save-container button, .toGallery button {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 7px 15px;
+    padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
     background-color: var(--color-highlight);
@@ -161,14 +164,23 @@
     border: none;
     border-radius: 4px;
     transition: background-color 0.3s;
+    text-decoration: none;
 }
 
-.save-container button:hover {
+.save-container button:hover, .toGallery button:hover {
     background-color: var(--color-secondary);
 }
 
-.save-container button img {
-    width: 16px;
-    height: 16px;
+.save-container button img, .toGallery button img {
+    width: 20px;
+    height: 20px;
     object-fit: contain;
+}
+
+/* Remueve el subrayado del enlace dentro del botón "Ir a la Galería" */
+.toGallery a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
 }

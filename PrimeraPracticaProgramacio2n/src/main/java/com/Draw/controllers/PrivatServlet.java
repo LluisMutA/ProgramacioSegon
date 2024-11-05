@@ -16,7 +16,8 @@ public class PrivatServlet extends HttpServlet {
            resp.sendRedirect("/login");
            return;
        }
-//TODO: PONERBIEN ACORDATE DE DESCOMENTAR LAS 3 LINEAS DE ARRIBA AL ACABAR EL CANVAS
+
+//TODO: PONERBIEN DESCOMENTAR LAS 3 LINEAS DE ARRIBA AL ACABAR EL CANVAS
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/private.jsp");
         requestDispatcher.forward(req, resp);
     }
