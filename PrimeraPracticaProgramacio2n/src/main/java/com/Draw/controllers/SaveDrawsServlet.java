@@ -53,6 +53,3 @@ UserDAO userDAO = new UserDAOInMemory();
         resp.sendRedirect("/draw-gallery");
     }
 }
-
-//form hidden amb id per enviar el string de JSON (element.value(string
-// GSON, maven)

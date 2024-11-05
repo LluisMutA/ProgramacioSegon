@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/edit-draw")
+@WebServlet("/edit-draws")
 public class EditServlet extends HttpServlet {
     Gson gson = new Gson();
     @Override
@@ -22,13 +22,14 @@ public class EditServlet extends HttpServlet {
         String name = req.getParameter("name");
         Draw draw = drawDAO.findByName(name);
 
+
         req.setAttribute("drawTitle", draw.getDrawTitle());
-        req.setAttribute("author", draw.getUser().getName());
         req.setAttribute("backgroundColor", draw.getBackgroundColor());
         req.setAttribute("figures", gson.toJson(draw.getFig()));
 
+
         RequestDispatcher requestDispatcher =
-                req.getRequestDispatcher("/WEB-INF/jsp/private.jsp");
+                req.getRequestDispatcher("/WEB-INF/jsp/edit-draws.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

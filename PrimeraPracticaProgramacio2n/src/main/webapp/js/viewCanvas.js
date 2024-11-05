@@ -74,7 +74,6 @@ function drawCuadrado() {
 function redibujarCanvas() {
     ctx.clearRect(0, 0, $canvas.width, $canvas.height); 
   
-    // Redibuja cada figura encima del fondo
     figuras.forEach((figura) => {
       fillColor = figura.fillColor; // Usa el color de relleno de la figura
       strokeColor = figura.strokeColor; // Usa el color de trazo de la figura

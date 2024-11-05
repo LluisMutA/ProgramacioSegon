@@ -12,6 +12,7 @@ const $fillColor = document.querySelector("#fillColor");
 const $setBackground = document.querySelector("#setBackground");
 const ctx = $canvas.getContext("2d");
 const $backgroundColor = document.querySelector("#backgroundColor");
+const $figuresJSON = document.querySelector("#figuresJSON");
 
 
 let strokeColor = $strokeColor.value;
@@ -172,8 +173,8 @@ function drawCuadrado() {
   ctx.strokeStyle = strokeColor;
   ctx.beginPath();
   ctx.rect(startX, startY, endX - startX, endY - startY);
-  ctx.fill(); // Rellena el cuadrado
-  ctx.stroke(); // Dibuja el borde
+  ctx.fill();
+  ctx.stroke();
 }
 
 function drawCirculo() {
@@ -199,8 +200,8 @@ function drawTriangulo() {
   ctx.lineTo(startX, endY);
   ctx.lineTo((endX - startX) / 2 + startX, startY);
   ctx.closePath();
-  ctx.fill(); // Rellena el triángulo
-  ctx.stroke(); // Dibuja el borde
+  ctx.fill();
+  ctx.stroke();
 }
 
 function drawEstrella() {
@@ -245,7 +246,7 @@ function actualizarLista() {
   });
 
   $saveDraw.value = JSON.stringify(figuras);
-  scrollToBottom(); // Desplaza hacia el último elemento agregado
+  scrollToBottom();
 }
 
 function eliminarFigura(index) {
