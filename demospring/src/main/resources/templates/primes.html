@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Primes</h1>
+
+<ul>
+    <li th:each="n : ${primes}" th:text="${n}">0 </li>
+</ul>
+<table border="1px">
+    <tr th:each="fila : ${taula}">
+        <td th:each="el : ${fila}">
+            <span th:if="${el} == 0"> - </span>
+            <span th:if="${el} != 0" th:text="${el}"> - </span>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
