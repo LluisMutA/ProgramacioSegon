@@ -26,7 +26,6 @@ public class DrawDAOInMemory implements DrawDAO{
     @Override
     public void addDraw(String drawTitle, List<Figure> fig, User user, Date creationDate, Date modificationDate, String backgroundColor) {
         draws.add(new Draw(drawTitle, fig, user, creationDate, modificationDate, backgroundColor));
-
     }
 
     @Override
@@ -58,5 +57,6 @@ public class DrawDAOInMemory implements DrawDAO{
     @Override
     public void deleteByName(String name) {
         draws.remove(findByName(name));
+        System.out.println("Lista dibus" + draws);
     }
 }

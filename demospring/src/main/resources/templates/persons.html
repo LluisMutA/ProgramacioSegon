@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+<h1>Person list</h1>
+
+<table border="1">
+    <tr th:each="p : ${persons}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.year}"></td>
+    </tr>
+</table>
+
+<form method="post">
+    Nom: <input type="text" name="name"> <br>
+    Any naiximent: <input type="number" name="year"> <br>
+    <input type="submit">
+</form>
+
+</body>
+</html>

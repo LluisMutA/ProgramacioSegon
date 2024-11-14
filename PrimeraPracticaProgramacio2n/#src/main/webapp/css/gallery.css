@@ -1,0 +1,59 @@
+/* Colores basados en el esquema de Coolors */
+:root {
+    --color-primary: #668586;
+    --color-secondary: #82aeb1;
+    --color-tertiary: #93c6d6;
+    --color-accent: #a7acd9;
+    --color-highlight: #9e8fb2;
+    --color-white: #ffffff;
+}
+
+/* Estilo del cuerpo */
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo de encabezados de tabla */
+th {
+    background-color: var(--color-highlight);
+    color: var(--color-white);
+    padding: 10px;
+}
+
+/* Estilo de las celdas de la tabla */
+td {
+    padding: 10px;
+    border-bottom: 1px solid var(--color-tertiary);
+}
+
+/* Estilo de los enlaces */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--color-tertiary);
+}
+
+/* Estilo de la fila de la tabla al pasar el mouse */
+tr:hover {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+}

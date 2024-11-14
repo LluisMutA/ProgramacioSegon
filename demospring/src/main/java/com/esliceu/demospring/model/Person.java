@@ -1,9 +1,14 @@
 package com.esliceu.demospring.model;
 
 public class Person {
-
+    
+    long id;
     int year;
     String name;
+
+    public Person() {
+
+    }
 
     @Override
     public String toString() {
@@ -34,5 +39,12 @@ public class Person {
         this.name = name;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
 }

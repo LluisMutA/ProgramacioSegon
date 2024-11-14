@@ -14,6 +14,7 @@ import java.io.IOException;
 @WebServlet("/delete-draw")
 public class DeleteDrawServlet extends HttpServlet {
     DrawService drawService = new DrawService();
+    DrawDAO drawDAO = new DrawDAOInMemory();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,6 +24,7 @@ public class DeleteDrawServlet extends HttpServlet {
         }
         String user = (String) req.getAttribute("user");
         String drawingName = req.getParameter("name");
+      //  drawDAO.deleteByName(user);
         drawService.deleteByName(user, drawingName);
 
         resp.sendRedirect("/draw-gallery");

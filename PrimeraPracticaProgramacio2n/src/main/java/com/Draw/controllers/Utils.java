@@ -18,6 +18,6 @@ public class Utils {
 
         String user = (String) session.getAttribute("user"); // Obtén el username
         req.setAttribute("user", user);
-        return user != null; // TODO: quisas es user solo Devuelve verdadero si el usuario está autenticado
+        return user != null;
     }
 }

@@ -14,23 +14,23 @@ import java.util.Map;
 @Controller
 public class LogInController {
 
-    @GetMapping("/login")
-    public String getLogin() {
-        return "login";
-    }
+        @GetMapping("/login")
+        public String getLogin() {
+            return "login";
+        }
 
-    @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, HttpSession session){
-    if(username.equals("a") && password.equals("a")){
-        session.setAttribute("user", username);
+        @PostMapping("/login")
+        public String login(@RequestParam String username, @RequestParam String password, HttpSession session){
+        if(username.equals("a") && password.equals("a")){
+            session.setAttribute("user", username);
+            return "login";
+        }
         return "login";
     }
-    return "login;";
-}
-    @GetMapping("/private")
-    public String privatePage(HttpSession session, Model m, @RequestParam String user){
-        m.addAttribute("user", user);
-        return  "private"; //no existeix encara
+        @GetMapping("/private")
+        public String privatePage(HttpSession session, Model m, @RequestParam String user){
+            m.addAttribute("user", user);
+            return  "private"; //no existeix encara
+        }
     }
-}
 
