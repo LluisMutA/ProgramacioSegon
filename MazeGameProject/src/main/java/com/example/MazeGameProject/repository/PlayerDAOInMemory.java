@@ -32,7 +32,7 @@ public class PlayerDAOInMemory implements PlayerDAO {
                 player.getScore(), player.getCoins(), player.getKeys());
     }
 
-    public void updateGameState(GameStatus gameStatus){ //TODO: implementar, crear Services y controller
+ //   public void updateGameState(GameStatus gameStatus){ //TODO: implementar, crear Services y controller
 
-    }
+//    }
 } //Tabla inventario para ir juntando player con objetos (problemas con SQL y listas)
