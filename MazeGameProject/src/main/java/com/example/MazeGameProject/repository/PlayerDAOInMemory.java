@@ -27,8 +27,12 @@ public class PlayerDAOInMemory implements PlayerDAO {
                 player.getName(), player.getPassword());
     }
 
-    public void updatePlayer(Player player){
+    public void updatePlayer(Player player){ //TODO: pasarlo al DAO e implementador crear el service y controller
         jdbcTemplate.update("insert into player (score, coins, keys) values (?, ?, ?)",
                 player.getScore(), player.getCoins(), player.getKeys());
+    }
+
+    public void updateGameState(GameStatus gameStatus){ //TODO: implementar, crear Services y controller
+
     }
 } //Tabla inventario para ir juntando player con objetos (problemas con SQL y listas)
