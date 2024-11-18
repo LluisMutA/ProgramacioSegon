@@ -49,7 +49,6 @@ UserDAO userDAO = new UserDAOInMemory();
 
         drawDAO.addDraw(drawTitle, figure, user, date, date, backgroundColor);
 
-        System.out.println(drawDAO.findAllDraws());
         resp.sendRedirect("/draw-gallery");
     }
 }

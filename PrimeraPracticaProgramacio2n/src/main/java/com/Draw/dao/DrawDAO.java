@@ -8,13 +8,15 @@ import java.util.Date;
 import java.util.List;
 
 public interface DrawDAO{
+    int  generateDrawId();
+
     void addDraw(String drawTitle, List<Figure> fig, User user, Date creationDate, Date modificationDate, String backgroundColor);
 
     List<Draw> findAllDraws();
 
     Draw findByName(String name);
 
-    boolean matchTitleAndUser(String name, String title);
+    Draw findById(int drawId);
 
-    void deleteByName(String name);
+    void deleteById(int drawId);
 }

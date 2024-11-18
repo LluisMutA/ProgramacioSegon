@@ -57,3 +57,15 @@ tr:hover {
     background-color: var(--color-accent);
     color: var(--color-white);
 }
+
+button {
+    background-color: #f44336; /* Rojo */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #d32f2f; /* Rojo más oscuro */
+}
+

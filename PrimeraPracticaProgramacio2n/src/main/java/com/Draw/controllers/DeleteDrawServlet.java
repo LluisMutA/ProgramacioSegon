@@ -2,6 +2,7 @@ package com.Draw.controllers;
 
 import com.Draw.dao.DrawDAO;
 import com.Draw.dao.DrawDAOInMemory;
+import com.Draw.model.Draw;
 import com.Draw.services.DrawService;
 
 import javax.servlet.ServletException;
@@ -20,12 +21,15 @@ public class DeleteDrawServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!Utils.userOK(req)) {
             resp.sendRedirect("/login");
-            return;
         }
-        String user = (String) req.getAttribute("user");
-        String drawingName = req.getParameter("name");
-      //  drawDAO.deleteByName(user);
-        drawService.deleteByName(user, drawingName);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String user = (String) req.getParameter("user");
+        String drawId =  req.getParameter("draw");
+        drawService.deleteByDrawId(user, Integer.parseInt(drawId));
 
         resp.sendRedirect("/draw-gallery");
     }

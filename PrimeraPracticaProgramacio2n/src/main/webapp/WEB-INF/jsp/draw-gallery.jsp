@@ -11,6 +11,7 @@
     <table>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Author</th>
           <th>Name</th>
           <th>Figure Number:</th>
@@ -19,9 +20,10 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <body>
         <c:forEach items="${draws}" var="draw">
             <tr>
+                <td>${draw.drawId}</td>
                 <td>${draw.user.username}</td>
                 <td>${draw.drawTitle}</td>
                 <td>${draw.fig.size()}</td>
@@ -30,13 +32,20 @@
                 <td>
                     <a href="/view-canvas?name=${draw.drawTitle}">View</a>
                     <c:if test="${draw.user.username == username}">
-                      <a href="/delete-draw?name=${draw.drawTitle}">Delete</a>
+                        <form action="/delete-draw" method="POST" style="display:inline;">
+                            <input type="hidden" name="draw" value="${draw.drawId}">
+                            <button type="submit">Delete</button>
+                        </form>
                     </c:if>
                 </td>
             </tr>
         </c:forEach>
-      </tbody>
+      </body>
     </table>
+    <form action="/delete-draw" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
+        <input type="hidden" name="draw" value="${draw.drawId}">
+        <button type="submit">Delete</button>
+    </form>
   <button onclick="location.href='/owned-gallery'">
       Mis dibujos:
   </button>
@@ -44,5 +53,11 @@
       Volver al canvas:
   </button>
   </body>
+  <script>
+      function confirmDelete() {
+          return confirm("¿Estás seguro de que deseas eliminar este dibujo?");
+      }
+  </script>
+
 </html>
 

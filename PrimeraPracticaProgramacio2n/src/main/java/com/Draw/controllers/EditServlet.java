@@ -25,7 +25,7 @@ public class EditServlet extends HttpServlet {
 
         req.setAttribute("drawTitle", draw.getDrawTitle());
         req.setAttribute("backgroundColor", draw.getBackgroundColor());
-        req.setAttribute("figures", gson.toJson(draw.getFig()));
+        req.setAttribute("saveDraw", gson.toJson(draw.getFig())); //TODO: Comprobar
 
 
         RequestDispatcher requestDispatcher =

@@ -11,22 +11,11 @@ public class DrawService {
     DrawDAO drawDAO = new DrawDAOInMemory();
     UserDAO userDAO = new UserDAOInMemory();
 
-    public void deleteByName(String name, String drawingName){
-        Draw dibuix = drawDAO.findByName(drawingName);
+    public void deleteByDrawId(String name, int drawId){
+        Draw dibuix = drawDAO.findById(drawId);
         if (dibuix.getUser().getName().equals(name)) {
-            drawDAO.deleteByName(drawingName);
+            drawDAO.deleteById(drawId);
             System.out.println("Autor dibujo" + dibuix.getUser().getName() + " Nombre del usuario registrado: " + name);
         }
-
-
-
-//        boolean delete = drawDAO.matchTitleAndUser(name, drawingName);
-//        if(!delete){
-//            drawDAO.deleteByName(drawingName);
-//        }
-
-        // Has de treure el dibuix des del dao
-        // has de verificar que el propietari del dibuix coincideix
-        // amb l0usuari que està logeat
     }
 }

@@ -11,6 +11,7 @@ public class Draw {
     private Date creationDate;
     private Date modificationDate;
     private String backgroundColor;
+    private int drawId;
 
 
 
@@ -32,6 +33,7 @@ public class Draw {
                 ", creationDate=" + creationDate +
                 ", modificationDate=" + modificationDate +
                 ", backgroundColor='" + backgroundColor + '\'' +
+                ", drawId=" + drawId +
                 '}';
     }
 
@@ -81,5 +83,13 @@ public class Draw {
 
     public void setBackgroundColor(String backgroundColor) {
         this.backgroundColor = backgroundColor;
+    }
+
+    public int getDrawId() {
+        return drawId;
+    }
+
+    public void setDrawId(int drawId) {
+        this.drawId = drawId;
     }
 }
