@@ -28,9 +28,30 @@ public class DeleteDrawServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String user = (String) req.getParameter("user");
-        String drawId =  req.getParameter("draw");
+        String drawId = req.getParameter("draw");
         drawService.deleteByDrawId(user, Integer.parseInt(drawId));
 
         resp.sendRedirect("/draw-gallery");
-    }
+//        @Override
+//        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//            String user = req.getParameter("user");
+//            String drawIdStr = req.getParameter("draw");
+
+//            // Validar que los parámetros no sean nulos
+//            if (user == null || drawIdStr == null || !drawIdStr.matches("\\d+")) {
+//                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Datos inválidos");
+//                return;
+//            }
+
+//            int drawId = Integer.parseInt(drawIdStr);
+
+//            try {
+//                drawService.deleteByDrawId(user, drawId);
+//                resp.sendRedirect("/draw-gallery");
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al eliminar el dibujo");
+//
+//    }
+        }
 }

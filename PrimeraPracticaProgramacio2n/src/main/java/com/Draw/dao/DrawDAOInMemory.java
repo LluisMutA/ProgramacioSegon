@@ -68,5 +68,6 @@ public class DrawDAOInMemory implements DrawDAO{
         for (Draw list: draws){
             System.out.println(list);
         }
+
     }
 }

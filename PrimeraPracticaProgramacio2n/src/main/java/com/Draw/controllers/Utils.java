@@ -11,13 +11,14 @@ public class Utils {
     private static UserDAO userDAO = new UserDAOInMemory();
 
     public static boolean userOK(HttpServletRequest req) {
-        HttpSession session = req.getSession(false); // No crear una nueva sesión si no existe
+        HttpSession session = req.getSession(false);
         if (session == null) {
-            return false; // No hay sesión activa
+            return false;
         }
 
-        String user = (String) session.getAttribute("user"); // Obtén el username
-        req.setAttribute("user", user);
-        return user != null;
+        String username = (String) session.getAttribute("user");
+        req.setAttribute("username", username);
+        return username != null;
     }
+
 }

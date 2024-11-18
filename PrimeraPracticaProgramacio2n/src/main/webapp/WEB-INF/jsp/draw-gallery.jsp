@@ -32,10 +32,11 @@
                 <td>
                     <a href="/view-canvas?name=${draw.drawTitle}">View</a>
                     <c:if test="${draw.user.username == username}">
-                        <form action="/delete-draw" method="POST" style="display:inline;">
-                            <input type="hidden" name="draw" value="${draw.drawId}">
-                            <button type="submit">Delete</button>
-                        </form>
+                       <form action="/delete-draw" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este dibujo?');">
+                           <input type="hidden" name="user" value="${username}">
+                           <input type="hidden" name="draw" value="${draw.drawId}">
+                           <button type="submit">Delete</button>
+                       </form>
                     </c:if>
                 </td>
             </tr>
