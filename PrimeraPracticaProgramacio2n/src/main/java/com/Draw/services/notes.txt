@@ -1,0 +1,6 @@
+1# - Utils corregit, comproba be la sessio amb l'username, no amb l'user
+
+2# - Delete funcional, id afegit id als dibuixos per evitar borrar dibuixos amb el mateix nom
+
+3# - Afegit paramete al jsp per mostrar la id del dibuix
+

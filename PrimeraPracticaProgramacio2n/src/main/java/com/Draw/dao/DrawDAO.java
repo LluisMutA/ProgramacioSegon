@@ -19,4 +19,7 @@ public interface DrawDAO{
     Draw findById(int drawId);
 
     void deleteById(int drawId);
+
+    void updateDraw(int drawId, String drawTitle, List<Figure> fig, String backgroundColor, Date modificationDate);
+
 }

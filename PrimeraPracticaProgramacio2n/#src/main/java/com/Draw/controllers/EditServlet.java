@@ -29,7 +29,7 @@ public class EditServlet extends HttpServlet {
 
 
         RequestDispatcher requestDispatcher =
-                req.getRequestDispatcher("/WEB-INF/jsp/edit-draws.jsp");
+                req.getRequestDispatcher("/WEB-INF/jsp/edit-draw.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

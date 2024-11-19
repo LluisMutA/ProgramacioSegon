@@ -37,6 +37,10 @@
                            <input type="hidden" name="draw" value="${draw.drawId}">
                            <button type="submit">Delete</button>
                        </form>
+                         <form action="/edit-canvas" method="POST" style="display:inline;">
+                            <input type="hidden" name="draw" value="${draw.drawId}">
+                            <button type="submit">Edit</button>
+                         </form>
                     </c:if>
                 </td>
             </tr>
