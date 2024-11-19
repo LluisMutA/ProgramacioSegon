@@ -13,7 +13,7 @@ public class UserDAOInMemory  implements  UserDAO{
         users.add(new User("libb", "4321", "Miguel", 2));
         users.add(new User("jhon", "dddd","Maria",3));
         users.add(new User("bill2", "1234321","Alberto",4));
-        users.add(new User("", "","", 5));
+        users.add(new User("a", "a","a", 5));
     }
 
     @Override

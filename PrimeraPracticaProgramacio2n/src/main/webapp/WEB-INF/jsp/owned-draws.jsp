@@ -30,7 +30,10 @@
                 <td>${draw.modificationDate}</td>
                 <td>
                     <a href="/view-canvas?name=${draw.drawTitle}">View</a>
-                    <a href="/delete-draw?name=${draw.drawTitle}">Delete</a>
+                    <form action="/delete-draw" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este dibujo?');">
+                          <input type="hidden" name="draw" value="${draw.drawId}">
+                          <button type="submit">Delete</button>
+                     </form>
                     <a href="/edit-draws?name=${draw.drawTitle}">Edit</a>
                 </td>
             </tr>
@@ -45,5 +48,15 @@
   <button onclick="location.href='/private'">
       Volver al canvas:
   </button>
+   <form action="/delete-draw" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
+          <input type="hidden" name="draw" value="${draw.drawId}">
+          <button type="submit">Delete</button>
+   </form>
+   <script>
+         function confirmDelete() {
+             return confirm("¿Estás seguro de que deseas eliminar este dibujo?");
+         }
+   </script>
+
   </body>
 </html>

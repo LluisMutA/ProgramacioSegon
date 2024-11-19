@@ -27,7 +27,7 @@ public class DeleteDrawServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String user = (String) req.getParameter("user");
+        String user = (String) req.getSession().getAttribute("user");
         String drawId = req.getParameter("draw");
         drawService.deleteByDrawId(user, Integer.parseInt(drawId));
 
