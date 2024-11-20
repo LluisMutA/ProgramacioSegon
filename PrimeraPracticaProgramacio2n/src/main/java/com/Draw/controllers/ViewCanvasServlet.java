@@ -29,6 +29,7 @@ public class ViewCanvasServlet extends HttpServlet {
         req.setAttribute("author", draw.getUser().getName());
         req.setAttribute("backgroundColor", draw.getBackgroundColor());
         req.setAttribute("figures", gson.toJson(draw.getFig()));
+        req.setAttribute("listaFiguras", draw.getFig());
 
         RequestDispatcher requestDispatcher =
                 req.getRequestDispatcher("/WEB-INF/jsp/view-canvas.jsp");

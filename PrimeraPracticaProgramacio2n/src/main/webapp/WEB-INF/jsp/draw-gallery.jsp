@@ -23,7 +23,7 @@
       <body>
         <c:forEach items="${draws}" var="draw">
             <tr>
-                <td name="drawId">${draw.drawId}</td>
+                <td>${draw.drawId}</td>
                 <td>${draw.user.username}</td>
                 <td>${draw.drawTitle}</td>
                 <td>${draw.fig.size()}</td>
@@ -37,7 +37,7 @@
                            <button type="submit">Delete</button>
                        </form>
                          <form action="/edit-draw" method="POST" style="display:inline;">
-                            <input type="hidden" name="draw" value="${draw.drawId}">
+                            <input type="hidden" name="drawId" value="${draw.drawId}">
                             <button type="submit">Edit</button>
                          </form>
                     </c:if>

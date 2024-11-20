@@ -33,11 +33,10 @@ public class EditDrawServlet extends HttpServlet {
         req.setAttribute("drawId", draw.getDrawId());
         req.setAttribute("drawTitle", draw.getDrawTitle());
         req.setAttribute("backgroundColor", draw.getBackgroundColor());
-        req.setAttribute("listaFiguras", gson.toJson(draw.getFig()));
+        req.setAttribute("figures", gson.toJson(draw.getFig()));
 
         RequestDispatcher requestDispatcher =
                 req.getRequestDispatcher("/WEB-INF/jsp/edit-draw.jsp");
-        //TODO: De aqui pilla la info
         requestDispatcher.forward(req, resp);
     }
 }

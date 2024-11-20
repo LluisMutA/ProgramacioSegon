@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script type="application/json" id="figuresJSON">${figures}</script>
+    <script type="application/json" id="figuresJSON">${figuresDraw}</script>
     <script defer src="./js/editCanvas.js"></script>
 </head>
 
@@ -50,7 +50,11 @@
         </div>
 
         <div class="sidebar-right"Lista de figuras:>
-            <ul id="listaFiguras"></ul>
+            <ul id="listaFiguras" name="listaFiguras">
+            <c:forEach items="${fig}" var="fig">
+            <li>fig</li>
+            </c:forEach>
+            </ul>
         </div>
     </div>
 
@@ -76,6 +80,7 @@
         <button onclick="location.href='/owned-gallery'">
             Mis dibujos:
         </button>
+        <input type="hidden" name="drawId" id="drawId" value="${drawId}">
 
     </div>
 
