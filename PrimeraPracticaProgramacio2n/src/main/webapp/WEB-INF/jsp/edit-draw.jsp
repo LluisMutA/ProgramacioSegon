@@ -11,20 +11,18 @@
     <title>Title</title>
     <link rel="stylesheet" href="./css/style.css">
     <script type="application/json" id="figuresJSON">${figures}</script>
-    <script defer src="./js/indexDraw.js"></script>
+    <script defer src="./js/editCanvas.js"></script>
 </head>
 
 <body>
-    <!-- Barra de navegación superior -->
     <div class="navbar">
         <h1>Private</h1>
-        <div>Benvingut ${user}</div>
+        <div>Modificando: ${drawTitle} con id: ${drawId}</div>
         <a href="/logout">Cerrar Sesión</a>
     </div>
 
-    <!-- Contenedor principal -->
     <div class="container">
-        <!-- Botones a la izquierda -->
+
         <div class="sidebar-left">
             <button id="cuadrado">
                 <img src="./images/cuadrado.png" alt="Cuadrado" > Cuadrado
@@ -42,24 +40,20 @@
                 <img src="./images/draw.png" alt="Draw"> Draw
             </button>
 
-            <!-- Nuevos botones para color de trazo y relleno -->
             <input type="color" id="strokeColor" value="#000000">
             <input type="color" id="fillColor" value="#FFFFFF">
             <button id="setBackground">Fondo Canvas</button>
         </div>
 
-        <!-- Canvas en el centro -->
         <div class="canvas-container">
             <canvas id="canvas" width="500" height="500"></canvas>
         </div>
 
-        <!-- Lista de figuras a la derecha -->
         <div class="sidebar-right"Lista de figuras:>
             <ul id="listaFiguras"></ul>
         </div>
     </div>
 
-    <!-- Contenedor para los botones de guardar y borrar debajo del canvas -->
     <div class="save-container">
         <form method="post" action="/save-draw">
             <input type="hidden" name="saveDraw" id="saveDraw">
@@ -79,6 +73,10 @@
             Ir a la Galería
             <img src="./images/gallery.png" alt="">
         </button>
+        <button onclick="location.href='/owned-gallery'">
+            Mis dibujos:
+        </button>
+
     </div>
 
 </body>

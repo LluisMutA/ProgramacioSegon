@@ -4,3 +4,6 @@
 
 3# - Afegit paramete al jsp per mostrar la id del dibuix
 
+4# - Canviar ViewCanvas a elefir dibuix per id, no per nom
+
+5# - Implementar EditDrawServlet - 30%

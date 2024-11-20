@@ -23,7 +23,7 @@
       <body>
         <c:forEach items="${draws}" var="draw">
             <tr>
-                <td>${draw.drawId}</td>
+                <td name="drawId">${draw.drawId}</td>
                 <td>${draw.user.username}</td>
                 <td>${draw.drawTitle}</td>
                 <td>${draw.fig.size()}</td>
@@ -36,7 +36,7 @@
                            <input type="hidden" name="draw" value="${draw.drawId}">
                            <button type="submit">Delete</button>
                        </form>
-                         <form action="/edit-canvas" method="POST" style="display:inline;">
+                         <form action="/edit-draw" method="POST" style="display:inline;">
                             <input type="hidden" name="draw" value="${draw.drawId}">
                             <button type="submit">Edit</button>
                          </form>
@@ -46,10 +46,6 @@
         </c:forEach>
       </body>
     </table>
-    <form action="/delete-draw" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
-        <input type="hidden" name="draw" value="${draw.drawId}">
-        <button type="submit">Delete</button>
-    </form>
   <button onclick="location.href='/owned-gallery'">
       Mis dibujos:
   </button>
@@ -57,11 +53,5 @@
       Volver al canvas:
   </button>
   </body>
-  <script>
-      function confirmDelete() {
-          return confirm("¿Estás seguro de que deseas eliminar este dibujo?");
-      }
-  </script>
-
 </html>
 

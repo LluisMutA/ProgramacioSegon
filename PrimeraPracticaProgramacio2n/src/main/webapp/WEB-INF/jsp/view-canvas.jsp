@@ -12,6 +12,7 @@
   <body>
     <h1>Title: ${drawTitle}</h1>
     <h2>Author: ${author}</h2>
+    <h3>ID: ${drawId}</h3>
     <canvas id="canvas" style="background-color: ${backgroundColor};" width="500" height="500"></canvas>
 
     <button onclick="location.href='/draw-gallery'">

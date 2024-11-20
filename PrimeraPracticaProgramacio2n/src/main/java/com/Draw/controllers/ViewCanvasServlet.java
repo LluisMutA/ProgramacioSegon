@@ -24,6 +24,7 @@ public class ViewCanvasServlet extends HttpServlet {
         String name = req.getParameter("name");
         Draw draw = drawDAO.findByName(name);
 
+        req.setAttribute("drawId", draw.getDrawId());
         req.setAttribute("drawTitle", draw.getDrawTitle());
         req.setAttribute("author", draw.getUser().getName());
         req.setAttribute("backgroundColor", draw.getBackgroundColor());

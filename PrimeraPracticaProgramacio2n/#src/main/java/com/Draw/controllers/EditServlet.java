@@ -28,8 +28,6 @@ public class EditServlet extends HttpServlet {
         req.setAttribute("figures", gson.toJson(draw.getFig()));
 
 
-        RequestDispatcher requestDispatcher =
-                req.getRequestDispatcher("/WEB-INF/jsp/edit-draw.jsp");
-        requestDispatcher.forward(req, resp);
+
     }
 }

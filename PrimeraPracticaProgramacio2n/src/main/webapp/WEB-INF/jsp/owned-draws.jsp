@@ -48,15 +48,5 @@
   <button onclick="location.href='/private'">
       Volver al canvas:
   </button>
-   <form action="/delete-draw" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
-          <input type="hidden" name="draw" value="${draw.drawId}">
-          <button type="submit">Delete</button>
-   </form>
-   <script>
-         function confirmDelete() {
-             return confirm("¿Estás seguro de que deseas eliminar este dibujo?");
-         }
-   </script>
-
   </body>
 </html>
