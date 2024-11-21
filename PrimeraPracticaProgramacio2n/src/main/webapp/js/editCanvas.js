@@ -19,7 +19,7 @@ let figurasEdit = JSON.parse($figuresJSON.innerText);
 let strokeColor = $strokeColor.value;
 let fillColor = $fillColor.value;
 let backgroundColor = "#FFFFFF";
-let figuras = [];
+let figuras = figurasEdit; //test
 
 function addFigura(
   tipo,

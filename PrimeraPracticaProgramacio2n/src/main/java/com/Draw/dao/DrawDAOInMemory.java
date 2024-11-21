@@ -75,11 +75,11 @@ public class DrawDAOInMemory implements DrawDAO{
     public void updateDraw(int drawId, String drawTitle, List<Figure> fig, String backgroundColor, Date modificationDate) {
         for (Draw draw : draws) {
             if (draw.getDrawId() == drawId) {
-                draw.setDrawTitle(drawTitle); // Actualiza el título
-                draw.setFig(fig); // Actualiza las figuras
-                draw.setBackgroundColor(backgroundColor); // Actualiza el color de fondo
-                draw.setModificationDate(modificationDate); // Actualiza la fecha de modificación
-                return; // Salir del bucle después de actualizar
+                draw.setDrawTitle(drawTitle);
+                draw.setFig(fig);
+                draw.setBackgroundColor(backgroundColor);
+                draw.setModificationDate(modificationDate);
+                return;
             }
         }
         throw new IllegalArgumentException("No se encontró un dibujo con el ID proporcionado: " + drawId);
