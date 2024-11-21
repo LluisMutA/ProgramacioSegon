@@ -46,7 +46,7 @@
         </div>
 
         <div class="canvas-container">
-            <canvas id="canvas" width="500" height="500"></canvas>
+            <canvas id="canvas" width="500" height="500" style="background-color: ${backgroundColor};"></canvas>
         </div>
 
         <div class="sidebar-right"Lista de figuras:>
@@ -67,7 +67,7 @@
                 Guardar Dibujo
                 <img src="./images/saveDraw.png" alt="Guardar">
             </button>
-            <input type="hidden" name="backgroundColor" id="backgroundColor" value="#FFFFFF">
+            <input type="hidden" name="backgroundColor" id="backgroundColor" value="${backgroundColor}">
         </form>
         <button id="clearCanvas">
             Borrar Todo

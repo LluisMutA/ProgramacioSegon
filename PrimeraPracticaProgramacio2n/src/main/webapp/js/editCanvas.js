@@ -18,7 +18,7 @@ let figurasEdit = JSON.parse($figuresJSON.innerText);
 
 let strokeColor = $strokeColor.value;
 let fillColor = $fillColor.value;
-let backgroundColor = "#FFFFFF";
+let backgroundColor = $backgroundColor;
 let figuras = figurasEdit; //test
 
 function addFigura(
@@ -305,4 +305,9 @@ function scrollToBottom() {
   listaFigurasContainer.scrollTop = listaFigurasContainer.scrollHeight;
 }
 redibujarCanvas();
+actualizarLista();
+fillColor = "#FFFFFF";
+strokeColor = "#000000";
+
+
 

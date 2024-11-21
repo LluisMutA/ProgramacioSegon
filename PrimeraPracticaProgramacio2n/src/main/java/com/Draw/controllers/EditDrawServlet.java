@@ -26,24 +26,24 @@ public class EditDrawServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String drawIdParam = req.getParameter("drawId");
-        if (drawIdParam == null) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "No se proporcionó el ID del dibujo.");
-            return;
-        }
+//        String drawIdParam = req.getParameter("drawId");
+//        if (drawIdParam == null) {
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "No se proporcionó el ID del dibujo.");
+//            return;
+//        }
 
-        int drawId = Integer.parseInt(drawIdParam);
-        Draw draw = drawDAO.findById(drawId);
+//        int drawId = Integer.parseInt(drawIdParam);
+//        Draw draw = drawDAO.findById(drawId);
 
-        if (draw == null) {
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND, "El dibujo no existe.");
-            return;
-        }
+//        if (draw == null) {
+//            resp.sendError(HttpServletResponse.SC_NOT_FOUND, "El dibujo no existe.");
+//            return;
+//        }
 
-        req.setAttribute("draw", draw);
-        req.setAttribute("figuresJSON", gson.toJson(draw.getFig()));
-        req.getRequestDispatcher("/edit-draw.jsp").forward(req, resp);
-    }
+//        req.setAttribute("draw", draw);
+//        req.setAttribute("figuresJSON", gson.toJson(draw.getFig()));
+//        req.getRequestDispatcher("/edit-draw.jsp").forward(req, resp);
+      }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
