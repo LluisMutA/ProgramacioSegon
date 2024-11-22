@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script defer src="./js/indexDraw.js"></script>
+    <script defer src="./js/indexDraw2.js"></script>
 </head>
 
 <body>
@@ -45,6 +45,7 @@
             <input type="color" id="strokeColor" value="#000000">
             <input type="color" id="fillColor" value="#FFFFFF">
             <button id="setBackground">Fondo Canvas</button>
+            <button id="editMode">Editar figuras</button>
         </div>
 
         <!-- Canvas en el centro -->

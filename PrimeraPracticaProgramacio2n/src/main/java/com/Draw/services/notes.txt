@@ -7,3 +7,6 @@
 4# - Canviar ViewCanvas a elefir dibuix per id, no per nom
 
 5# - Implementar EditDrawServlet - 30%
+
+
+TODO: Cambiar view a findById en vez de findByName

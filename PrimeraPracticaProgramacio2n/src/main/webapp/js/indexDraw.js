@@ -19,7 +19,52 @@ let strokeColor = $strokeColor.value;
 let fillColor = $fillColor.value;
 let backgroundColor = "#FFFFFF";
 let figuras = [];
+let editing = false;
+let drawing = true;
+let selectedFigure = null;
 
+document.querySelector("#editMode").addEventListener("click", () => {
+  editingMode = !editingMode;
+  if (editingMode) {
+    alert("Modo de edición activado. Haz clic en una figura para moverla.");
+  } else {
+    selectedFigura = null;
+  }
+});
+
+// Hay que poner un else en los event listener del raton,
+// para poder comprobar si estamos en modo dibujo o editar.
+// Falta poner boton para volver al modo dibujo
+// Falta la logica para saber cuando has clicado una figura
+// Hay que actualizar la lista cada vez que se mueva una figura
+// hay que llamar a redibujar canvas en addFigura (creo) para que si hay cambios se apliquen
+//Cuando se clica una figura se mueve desde el centro de esta
+//
+//
+
+function isInsideFigura(*falta pasarle las cosas*) {
+  switch (figura.tipo) {
+    case "cuadrado":
+      return (
+
+      );
+    case "circulo":
+      return (
+
+      );
+    case "triangulo":
+
+      return (
+      );
+    case "estrella":
+    return (
+    );
+    case "draw":
+    return (
+    );
+  }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function addFigura(
   tipo,
   startX,
@@ -59,6 +104,7 @@ $setBackground.addEventListener("click", () => {
 });
 
 $clearCanvas.addEventListener("click", () => {
+
   const confirmClear = confirm("¿Estás seguro de que deseas borrar el dibujo?");
   if (confirmClear) {
     ctx.clearRect(0, 0, $canvas.width, $canvas.height);
@@ -89,6 +135,7 @@ let endX = null;
 let endY = null;
 
 $canvas.addEventListener("mousedown", (event) => {
+if (editingMode) {} //Implementar el edit que pereza maldito artem
   ctx.strokeStyle = strokeColor;
   if (figura === allFigures.draw) {
     drawing = true;
@@ -105,6 +152,7 @@ $canvas.addEventListener("mousedown", (event) => {
 });
 
 $canvas.addEventListener("mousemove", (event) => {
+if (editingMode) {} //Implementar el edit que pereza maldito artem capitulo 2
   if (!drawing || figura !== allFigures.draw) return;
   const x = event.clientX - $canvas.offsetLeft;
   const y = event.clientY - $canvas.offsetTop;
@@ -114,6 +162,7 @@ $canvas.addEventListener("mousemove", (event) => {
 });
 
 $canvas.addEventListener("mouseup", (event) => {
+if (editingMode) {} //Implementar el edit que pereza maldito artem la pelicula
   if (drawing && figura === allFigures.draw) {
     addFigura("draw", null, null, null, null, drawPath, fillColor, strokeColor);
     drawing = false;
