@@ -13,13 +13,14 @@ const $setBackground = document.querySelector("#setBackground");
 const ctx = $canvas.getContext("2d");
 const $backgroundColor = document.querySelector("#backgroundColor");
 const $figuresJSON = document.querySelector("#figuresJSON");
+const $editButton = document.querySelector("#editButton")
 
 let figurasEdit = JSON.parse($figuresJSON.innerText);
 
 let strokeColor = $strokeColor.value;
 let fillColor = $fillColor.value;
 let backgroundColor = $backgroundColor;
-let figuras = figurasEdit; //test
+let figuras = figurasEdit;
 
 function addFigura(
   tipo,

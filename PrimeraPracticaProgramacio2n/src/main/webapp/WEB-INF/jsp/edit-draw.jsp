@@ -43,6 +43,8 @@
             <input type="color" id="strokeColor" value="#000000">
             <input type="color" id="fillColor" value="#FFFFFF">
             <button id="setBackground">Fondo Canvas</button>
+            <button id="editButton">Editar figuras</button>
+
         </div>
 
         <div class="canvas-container">
