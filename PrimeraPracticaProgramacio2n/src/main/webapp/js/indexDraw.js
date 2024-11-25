@@ -20,6 +20,10 @@ let fillColor = $fillColor.value;
 let backgroundColor = "#FFFFFF";
 let figuras = [];
 let selectedFigure = null;
+let editStartX = null;
+let editStartY = null;
+let editEndX = null;
+let editEndY = null;
 let isDragging = false;
 
 // Hay que poner un else en los event listener del raton,
@@ -82,6 +86,7 @@ $strokeColor.addEventListener("input", () => {
     selectedFigure.strokeColor = $strokeColor.value;
     console.log(selectedFigure);
     redibujarCanvas();
+    actualizarLista();
     localStorage.setItem("figurasDibujo", JSON.stringify(figuras));
     return;
   }
@@ -92,6 +97,7 @@ $fillColor.addEventListener("input", () => {
   if (selectedFigure !== null && figura === allFigures.unselected) {
     selectedFigure.fillColor = $fillColor.value;
     redibujarCanvas();
+    actualizarLista();
     localStorage.setItem("figurasDibujo", JSON.stringify(figuras));
     return;
   }
@@ -141,12 +147,11 @@ $canvas.addEventListener("mousedown", (event) => {
     const positionX = event.clientX - $canvas.offsetLeft;
     const positionY = event.clientY - $canvas.offsetTop;
     selectedFigure = selectFigure(positionX, positionY);
-    if (selectedFigure) {//////////
-      // Si se selecciona una figura, se activa el arrastre
-      isDragging = true;////////////
-      startX = positionX - selectedFigure.startX;
-      startY = positionY - selectedFigure.startY;
-    }/////////////
+    if (selectedFigure) {
+      isDragging = true;
+      editStartX = positionX;
+      editStartY = positionY;
+    }
     return;
   }
   ctx.strokeStyle = strokeColor;
@@ -165,6 +170,40 @@ $canvas.addEventListener("mousedown", (event) => {
 });
 
 $canvas.addEventListener("mousemove", (event) => {
+  if (selectedFigure && isDragging) {
+    editEndX = event.clientX - $canvas.offsetLeft;
+    editEndY = event.clientY - $canvas.offsetTop;
+    const distanceX = editStartX - editEndX;
+    const distanceY = editStartY - editEndY;
+    if (selectedFigure.tipo !== allFigures.draw) {
+      const prevStartX = selectedFigure.startX;
+      const prevStartY = selectedFigure.startY;
+      const prevEndX = selectedFigure.endX;
+      const prevEndY = selectedFigure.endY;
+      selectedFigure.startX -= distanceX;
+      selectedFigure.startY -= distanceY;
+      selectedFigure.endX -= distanceX;
+      selectedFigure.endY -= distanceY;
+      redibujarCanvas();
+      selectedFigure.startX = prevStartX;
+      selectedFigure.startY = prevStartY;
+      selectedFigure.endX = prevEndX;
+      selectedFigure.endY = prevEndY;
+    } else {
+      const prevDrawPath = [...selectedFigure.drawPath];
+      const postDrawPath = [];
+      selectedFigure.drawPath.forEach((element) => {
+        postDrawPath.push({
+          x: element.x - distanceX,
+          y: element.y - distanceY,
+        });
+      });
+      selectedFigure.drawPath = [...postDrawPath];
+      redibujarCanvas();
+      selectedFigure.drawPath = [...prevDrawPath];
+    }
+    return;
+  }
   if (!drawing || figura !== allFigures.draw) return;
   const x = event.clientX - $canvas.offsetLeft;
   const y = event.clientY - $canvas.offsetTop;
@@ -175,6 +214,28 @@ $canvas.addEventListener("mousemove", (event) => {
 
 $canvas.addEventListener("mouseup", (event) => {
   if (figura === allFigures.unselected) {
+    if (selectedFigure) {
+      const distanceX = editStartX - editEndX;
+      const distanceY = editStartY - editEndY;
+      isDragging = false;
+      if (selectedFigure.tipo !== allFigures.draw) {
+        selectedFigure.startX -= distanceX;
+        selectedFigure.startY -= distanceY;
+        selectedFigure.endX -= distanceX;
+        selectedFigure.endY -= distanceY;
+      } else {
+        const postDrawPath = [];
+        selectedFigure.drawPath.forEach((element) => {
+          postDrawPath.push({
+            x: element.x - distanceX,
+            y: element.y - distanceY,
+          });
+        });
+        selectedFigure.drawPath = [...postDrawPath];
+      }
+      redibujarCanvas();
+      actualizarLista();
+    }
     return;
   }
   if (drawing && figura === allFigures.draw) {
@@ -445,7 +506,7 @@ function selectFigure(positionX, positionY) {
     }
   }
 
-  return null; 
+  return null;
 }
 
 function isPointInTriangle(px, py, ax, ay, bx, by, cx, cy) {
@@ -490,13 +551,13 @@ function isPointInTriangle(px, py, ax, ay, bx, by, cx, cy) {
   return Math.abs(area1 + area2 + area3 - areaOrig) < 0.01;
 }
 
-function isPointNearLine(px, py, x1, y1, x2, y2, threshold = 3) { // 3px de tolerancia a errors
+function isPointNearLine(px, py, x1, y1, x2, y2, threshold = 3) {
+  // 3px de tolerancia a errors
   const distance =
     Math.abs((y2 - y1) * px - (x2 - x1) * py + x2 * y1 - y2 * x1) /
     Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
   return distance <= threshold;
 }
-
 
 function scrollToBottom() {
   const listaFigurasContainer = document.querySelector(".sidebar-right");
