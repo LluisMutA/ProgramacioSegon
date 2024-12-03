@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.playground {
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    grid-template-rows: repeat(7, 50px);
+    border: 2px solid black;
+    background-color: white;
+}
+
+
+
+.playground div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playground div:not([class]) {
+    background-color: black;
+}
+
+.directions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    font-size: 24px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.playground .large {
+    width: 100px;
+    height: 100px;
+}

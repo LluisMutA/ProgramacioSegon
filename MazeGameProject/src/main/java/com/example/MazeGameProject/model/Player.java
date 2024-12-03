@@ -9,16 +9,7 @@ public class Player {
     private int id;
     private int score;
     private int coins;
-    private List<Key> keys = new ArrayList<>();
-//
-//    public Player(String name, String password, int id, int score, int coins, List<Key> keys) {
-//        this.name = name;
-//        this.password = password;
-//        this.id = id;
-//        this.score = score;
-//        this.coins = coins;
-//        this.keys = keys;
-//    }
+    private List<itemKey> itemKeys = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -60,11 +51,11 @@ public class Player {
         this.coins = coins;
     }
 
-    public List<Key> getKeys() {
-        return keys;
+    public List<itemKey> getKeys() {
+        return itemKeys;
     }
 
-    public void setKeys(List<Key> keys) {
-        this.keys = keys;
+    public void setKeys(List<itemKey> itemKeys) {
+        this.itemKeys = itemKeys;
     }
 }

@@ -5,31 +5,15 @@ public class Room {
     private boolean hasCoin; // valor de la moneda
     private int id;
     private String name;
-    private Wall n; // norte, sur, este, oeste -> Si esta abierta (aire) al click
+    private Walls n; // norte, sur, este, oeste -> Si esta abierta (aire) al click
                     // vamos a la siguiente room, si es una pared, no pasa nada (mssge), si es una puerta
                     // mirar si tienes la key, si no la tienes (msge), si la tienes pasa
                     // a ser aire y vas a la habitacion que toca
-    private Wall s;
-    private Wall e;
-    private Wall o;
-    private Floor floorOne;
-    private Floor floorTwo;
-    private int mapId;
+    private Walls s;
+    private Walls e;
+    private Walls o;
+    private int mazeId;
 
-
-    public Room(boolean hasKey, boolean hasCoin, int id, String name, Wall n, Wall s, Wall e, Wall o, Floor floorOne, Floor floorTwo, int mapId) {
-        this.hasKey = hasKey;
-        this.hasCoin = hasCoin;
-        this.id = id;
-        this.name = name;
-        this.n = n;
-        this.s = s;
-        this.e = e;
-        this.o = o;
-        this.floorOne = floorOne;
-        this.floorTwo = floorTwo;
-        this.mapId = getMapId();
-    }
 
     public boolean isHasKey() {
         return hasKey;
@@ -63,59 +47,44 @@ public class Room {
         this.name = name;
     }
 
-    public Wall getN() {
+    public Walls getN() {
         return n;
     }
 
-    public void setN(Wall n) {
+    public void setN(Walls n) {
         this.n = n;
     }
 
-    public Wall getS() {
+    public Walls getS() {
         return s;
     }
 
-    public void setS(Wall s) {
+    public void setS(Walls s) {
         this.s = s;
     }
 
-    public Wall getE() {
+    public Walls getE() {
         return e;
     }
 
-    public void setE(Wall e) {
+    public void setE(Walls e) {
         this.e = e;
     }
 
-    public Wall getO() {
+    public Walls getO() {
         return o;
     }
 
-    public void setO(Wall o) {
+    public void setO(Walls o) {
         this.o = o;
     }
 
-    public Floor getFloorOne() {
-        return floorOne;
+    public int getMazeId() {
+        return mazeId;
     }
 
-    public void setFloorOne(Floor floorOne) {
-        this.floorOne = floorOne;
-    }
-
-    public Floor getFloorTwo() {
-        return floorTwo;
-    }
-
-    public void setFloorTwo(Floor floorTwo) {
-        this.floorTwo = floorTwo;
-    }
-    public int getMapId() {
-        return mapId;
-    }
-
-    public void setMapId(int mapId) {
-        this.mapId = mapId;
+    public void setMazeId(int mazeId) {
+        this.mazeId = mazeId;
     }
 
 }

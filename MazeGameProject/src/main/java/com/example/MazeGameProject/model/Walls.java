@@ -1,11 +1,21 @@
 package com.example.MazeGameProject.model;
 
-public class Wall {
+public class Walls {
     private int type;   // type = 0; air
                         // type = 1; solid
                         // type = 3; door
     private String position;
     private int id;
+    private int roomId;
+    private int nextRoomId;
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
 
     public int getType() {
         return type;

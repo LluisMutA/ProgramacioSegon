@@ -1,11 +1,11 @@
 package com.example.MazeGameProject.model;
 
-public class Key {
+public class itemKey {
     private int id;
     private int price;
     boolean alreadyPicked;
 
-    public Key(int id, int price, boolean alreadyPicked) {
+    public itemKey(int id, int price, boolean alreadyPicked) {
         this.id = id;
         this.price = price;
         this.alreadyPicked = alreadyPicked;
